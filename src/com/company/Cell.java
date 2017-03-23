@@ -5,10 +5,11 @@ package com.company;
  */
 public class Cell {
     private int x, y;
-
-    public Cell(int x, int y) {
+    private char dir;
+    public Cell(int x, int y, char dir) {
         this.x = x;
         this.y = y;
+        this.dir = dir;
     }
     public int getX() {
         return this.x;
@@ -16,9 +17,30 @@ public class Cell {
     public int getY() {
         return this.y;
     }
-    public void move(int changeInX, int changeInY) {
+    public void move() {
+        int changeInY = 0;
+        int changeInX = 0;
+        switch(dir) {
+            case 'U':
+                changeInY = 1;
+                break;
+            case 'D':
+                changeInY = -1;
+                break;
+            case 'L':
+                changeInX = -1;
+                break;
+            case 'R':
+                changeInX = 1;
+                break;
+        }
         this.x += changeInX;
         this.y += changeInY;
     }
-
+    public char getDir() {
+        return dir;
+    }
+    public void setDir(char dir) {
+        this.dir = dir;
+    }
 }

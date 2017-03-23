@@ -7,57 +7,92 @@ import java.util.Vector;
  */
 public class Snake {
     private int length = 0;
-    private char direction;
+    private char dir;
     private Cell head;
     Vector<Cell> snake;
+    Gameboard board = new Gameboard(20, 20);
 
 
-    public Snake(char direction) {
-        this.direction = direction;
+    public static void main(String[] Args) {
+        //------- Clean up ---------//
+        char[][] gameboard = new char[22][22];
 
-        head = new Cell(0,0);
+        for(int x = 0; x < 23; x++) {
+            for (int y = 0; y < 23; y++) {
+                if (x == 0) {
+                    gameboard[x][y] = '|';
+                } else if (y == 0) {
+                    gameboard[x][y] = '-';
+                } else {
+                    gameboard[x][y] = ' ';
+                }
+            }
+        }
+        //------- Clean up ---------//
+
+        Snake python = new Snake('R');
+        while(python.isAlive()) {
+            python.updateSnake();
+            displayBoard();
+        }
+    }
+    public Snake(char dir) {
+        this.dir = dir;
+
+        head = new Cell(0,0, dir);
         snake = new Vector<Cell>();
         snake.add(head);
     }
-
-    public void moveHead(char dir) {
-        int changeInX = 0;
-        int changeInY = 0;
-        switch(dir) {
-            case 'U':
-                changeInY = 1;
-                break;
-            case 'D':
-                changeInY = -1;
-                break;
-            case 'L':
-                changeInX = -1;
-                break;
-            case 'R':
-                changeInX = 1;
-                break;
+    public void updateSnake() {
+        for(Cell cell : snake) {
+            cell.move();
         }
-        head.move(changeInX, changeInY);
+        updateDir();
+    }
+    public void updateDir() {
+        moveHead();
+        for(int i = 1; i < snake.size(); i++) {
+            snake.get(i).setDir(snake.get(i-1).getDir());
+        }
+    }
+    public void moveHead() {
+        head.setDir(dir);
+        head.move();
     }
     public void changeDir(char dir) {
-        this.direction = dir;
+        this.dir = dir;
     }
-
     public void eat() {
-        Cell lastOne = 
+        //compare location of food and head
+    }
+    public void grow() {
+        Cell tail = snake.get(snake.size()-1);
+        Cell newTail = new Cell(tail.getX(), tail.getY(), tail.getDir());
+
+        snake.add(newTail);
     //create new cell
     }
     public boolean isAlive() {
-        for (int i = 1; i < snake.size(); i ++) {
-            if (head.getX() == snake.get(i).getX() && head.getY() == snake.get(i).getY())
-                return false;
+        if((head.getX() >= 0 && head.getX() <= board.getWidth()) && (head.getY() >= 0 && head.getY() <= board.getHeight())) {
+            for (int i = 1; i < snake.size(); i++) {
+                if (head.getX() != snake.get(i).getX() && head.getY() != snake.get(i).getY()) {
+                    return true;
+                }
+            }
         }
-        return true;
+        return false;
     }
     public int getLength() {
         return this.length;
     }
     public char getDirection() {
-        return this.direction;
+        return this.dir;
+    }
+    public void displayBoard() {
+        for (int x = 0; x < 23; x++) {
+            for (int y = 0; y < 23; y++) {
+                
+            }
+        }
     }
 }
