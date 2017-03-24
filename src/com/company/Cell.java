@@ -7,8 +7,8 @@ public class Cell {
     private int x, y;
     private char dir;
     public Cell(int x, int y, char dir) {
-        this.x = x;
-        this.y = y;
+        this.x = y;
+        this.y = x;
         this.dir = dir;
     }
     public int getX() {
