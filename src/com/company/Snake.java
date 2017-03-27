@@ -52,7 +52,6 @@ public class Snake {
         updateDir();
     }
     public void updateDir() {
-        moveHead();
         for(int i = 1; i < snakeVector.size(); i++) {
             snakeVector.get(i).setDir(snakeVector.get(i-1).getDir());
         }
@@ -65,7 +64,28 @@ public class Snake {
         this.dir = dir;
     }
     public void eat() {
-        //compare location of food and head
+        char dir = snakeVector.get(snakeVector.size()-1).getDir();
+        int lastX = snakeVector.get(snakeVector.size()-1).getX();
+        int lastY = snakeVector.get(snakeVector.size()-1).getY();
+
+        int changeInY = 0;
+        int changeInX = 0;
+        switch(dir) {
+            case 'U':
+                lastY += 1;
+                break;
+            case 'D':
+                lastY += -1;
+                break;
+            case 'L':
+                lastX += -1;
+                break;
+            case 'R':
+                lastX += 1;
+                break;
+        }
+        snakeVector.add(new Cell(lastX, lastY, dir));
+
     }
     public void grow() {
         Cell tail = snakeVector.get(snakeVector.size()-1);
