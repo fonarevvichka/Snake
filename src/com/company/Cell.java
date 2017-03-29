@@ -6,9 +6,19 @@ package com.company;
 public class Cell {
     private int x, y;
     private char dir;
+
+    @Override
+    public String toString() {
+        return "Cell{" +
+                "x=" + x +
+                ", y=" + y +
+                ", dir=" + dir +
+                '}';
+    }
+
     public Cell(int x, int y, char dir) {
-        this.x = y;
-        this.y = x;
+        this.x = x;
+        this.y = y;
         this.dir = dir;
     }
     public int getX() {
@@ -18,14 +28,14 @@ public class Cell {
         return this.y;
     }
     public void move() {
-        int changeInY = 0;
         int changeInX = 0;
+        int changeInY = 0;
         switch(dir) {
             case 'U':
-                changeInY = 1;
+                changeInY = -1;
                 break;
             case 'D':
-                changeInY = -1;
+                changeInY = 1;
                 break;
             case 'L':
                 changeInX = -1;

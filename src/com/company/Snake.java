@@ -32,8 +32,18 @@ public class Snake {
 
         Snake python = new Snake('R');
 //        while(python.isAlive()) {
-            python.updateSnake();
-            python.eat();
+        python.updateSnake();
+        python.changeDir('D');
+        System.out.println(python.getDirection());
+        python.updateSnake();
+        python.updateSnake();
+        python.updateSnake();
+        python.eat();
+        python.eat();
+        python.changeDir('R');
+
+        python.updateSnake();
+//        System.out.println(python.getDirection());
             python.setBoard(gameboard);
             python.displayBoard(gameboard);
 //        }
@@ -62,6 +72,7 @@ public class Snake {
     }
     public void changeDir(char dir) {
         this.dir = dir;
+        head.setDir(dir);
     }
     public void eat() {
         char dir = snakeVector.get(snakeVector.size()-1).getDir();
@@ -72,20 +83,23 @@ public class Snake {
         int changeInX = 0;
         switch(dir) {
             case 'U':
-                lastY += 1;
+                changeInY += 1;
                 break;
             case 'D':
-                lastY += -1;
+                changeInY += -1;
                 break;
             case 'L':
-                lastX += -1;
+                changeInX += 1;
                 break;
             case 'R':
-                lastX += 1;
+                changeInX += +1;
                 break;
         }
-        snakeVector.add(new Cell(lastX, lastY, dir));
+        snakeVector.add(snakeVector.size(), new Cell(lastX + changeInX, lastY + changeInY, dir));
 
+        for(Cell cell : snakeVector) {
+            System.out.println(cell.toString());
+        }
     }
     public void grow() {
         Cell tail = snakeVector.get(snakeVector.size()-1);
@@ -105,7 +119,7 @@ public class Snake {
         return false;
     }
     public int getLength() {
-        return this.length;
+        return snakeVector.size();
     }
     public char getDirection() {
         return this.dir;
@@ -116,8 +130,11 @@ public class Snake {
                 for(int k = 0; k < snakeVector.size(); k++) {
                     if(snakeVector.get(k).getX() == x && snakeVector.get(k).getY() == y) {
                         gameboard[y][x] = '*';
+                        System.out.println(" x - " + x + " y - " + y + " * ");
+                        break;
                     } else {
                         gameboard[y][x] = ' ';
+                        System.out.println(" x - " + x + " y - " + y + " space  ");
                     }
                 }
             }
