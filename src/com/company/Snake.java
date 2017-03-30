@@ -33,46 +33,47 @@ public class Snake {
         Snake python = new Snake('R');
 //        while(python.isAlive()) {
         python.updateSnake();
+        python.updateSnake();
+        python.updateSnake();
+        python.eat();
+        python.eat();
+        python.eat();
         python.changeDir('D');
-        System.out.println(python.getDirection());
         python.updateSnake();
         python.updateSnake();
-        python.updateSnake();
-        python.eat();
-        python.eat();
-        python.changeDir('R');
 
-        python.updateSnake();
-//        System.out.println(python.getDirection());
-            python.setBoard(gameboard);
+        python.setBoard(gameboard);
             python.displayBoard(gameboard);
 //        }
     }
     public Snake(char dir) {
         this.dir = dir;
-
         head = new Cell(1,1, dir);
         snakeVector = new Vector<Cell>();
         snakeVector.add(head);
     }
     public void updateSnake() {
+        updateDir();
         for(Cell cell : snakeVector) {
             cell.move();
         }
-        updateDir();
     }
     public void updateDir() {
-        for(int i = 1; i < snakeVector.size(); i++) {
+//        char prevDir = snakeVector.get(0).getDir();
+//        char nextDir;
+//        for(int i = 1; i < snakeVector.size()-1; i++) {
+//            nextDir = snakeVector.get(i).getDir();
+//            snakeVector.get(i).setDir(prevDir);
+//            prevDir = nextDir;
+//        }
+        for(int i = snakeVector.size()-1; i > 0; i--) {
             snakeVector.get(i).setDir(snakeVector.get(i-1).getDir());
         }
-    }
-    public void moveHead() {
-        head.setDir(dir);
-        head.move();
+        head.setDir(this.dir);
+
     }
     public void changeDir(char dir) {
         this.dir = dir;
-        head.setDir(dir);
     }
     public void eat() {
         char dir = snakeVector.get(snakeVector.size()-1).getDir();
@@ -92,21 +93,14 @@ public class Snake {
                 changeInX += 1;
                 break;
             case 'R':
-                changeInX += +1;
+                changeInX += -1;
                 break;
         }
         snakeVector.add(snakeVector.size(), new Cell(lastX + changeInX, lastY + changeInY, dir));
 
-        for(Cell cell : snakeVector) {
-            System.out.println(cell.toString());
-        }
-    }
-    public void grow() {
-        Cell tail = snakeVector.get(snakeVector.size()-1);
-        Cell newTail = new Cell(tail.getX(), tail.getY(), tail.getDir());
-
-        snakeVector.add(newTail);
-    //create new cell
+//        for(Cell cell : snakeVector) {
+//            System.out.println(cell.toString());
+//        }
     }
     public boolean isAlive() {
         if((head.getX() >= 0 && head.getX() <= board.getWidth()) && (head.getY() >= 0 && head.getY() <= board.getHeight())) {
@@ -129,12 +123,18 @@ public class Snake {
             for (int x = 1; x < 21; x++) {
                 for(int k = 0; k < snakeVector.size(); k++) {
                     if(snakeVector.get(k).getX() == x && snakeVector.get(k).getY() == y) {
-                        gameboard[y][x] = '*';
-                        System.out.println(" x - " + x + " y - " + y + " * ");
+                        if(k== 0) {
+                            gameboard[y][x] = '0';
+                        } else if (k == 1) {
+                            gameboard[y][x] = '1';
+                        } else {
+                            gameboard[y][x] = '2';
+                        }
+//                        System.out.println(" x - " + x + " y - " + y + " * ");
                         break;
                     } else {
                         gameboard[y][x] = ' ';
-                        System.out.println(" x - " + x + " y - " + y + " space  ");
+//                        System.out.println(" x - " + x + " y - " + y + " space  ");
                     }
                 }
             }
