@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Random;
 import java.util.Vector;
 
 /**
@@ -32,25 +33,54 @@ public class Snake {
 
         Snake python = new Snake('R');
 //        while(python.isAlive()) {
-        python.updateSnake();
-        python.updateSnake();
-        python.updateSnake();
-        python.eat();
-        python.eat();
-        python.eat();
-        python.changeDir('D');
-        python.updateSnake();
+        if(python.isAlive()) {
+            python.updateSnake();
+            python.updateSnake();
+            python.updateSnake();
+            python.eat();
+            python.eat();
+            python.eat();
+            python.changeDir('D');
+            python.updateSnake();
+            python.updateSnake();
+            python.eat();
+            python.eat();
+            python.changeDir('R');
+            python.updateSnake();
+            python.changeDir('U');
+            python.updateSnake();
+            python.changeDir('L');
+
+        }
         python.updateSnake();
 
+        System.out.println(python.isAlive());
+
+
         python.setBoard(gameboard);
-            python.displayBoard(gameboard);
-//        }
+        python.displayBoard(gameboard);
     }
     public Snake(char dir) {
         this.dir = dir;
         head = new Cell(1,1, dir);
         snakeVector = new Vector<Cell>();
         snakeVector.add(head);
+
+        generateFood();
+    }
+    public Cell generateFood() {
+        Random rand = new Random();
+
+        int foodX = rand.nextInt(20) + 1;
+        int foodY = rand.nextInt(20) + 1;
+        for (int i = 0; i < snakeVector.size(); i++) {
+            if (foodX == snakeVector.get(i).getX() || foodY == snakeVector.get(i).getY()) {
+                foodX = rand.nextInt(20) + 1;
+                foodY = rand.nextInt(20) + 1;
+            } else {
+                return new Cell(foodX, foodY, 'U');
+            }
+        }
     }
     public void updateSnake() {
         updateDir();
@@ -59,13 +89,6 @@ public class Snake {
         }
     }
     public void updateDir() {
-//        char prevDir = snakeVector.get(0).getDir();
-//        char nextDir;
-//        for(int i = 1; i < snakeVector.size()-1; i++) {
-//            nextDir = snakeVector.get(i).getDir();
-//            snakeVector.get(i).setDir(prevDir);
-//            prevDir = nextDir;
-//        }
         for(int i = snakeVector.size()-1; i > 0; i--) {
             snakeVector.get(i).setDir(snakeVector.get(i-1).getDir());
         }
@@ -97,20 +120,24 @@ public class Snake {
                 break;
         }
         snakeVector.add(snakeVector.size(), new Cell(lastX + changeInX, lastY + changeInY, dir));
-
+        generateFood();
 //        for(Cell cell : snakeVector) {
 //            System.out.println(cell.toString());
 //        }
     }
     public boolean isAlive() {
-        if((head.getX() >= 0 && head.getX() <= board.getWidth()) && (head.getY() >= 0 && head.getY() <= board.getHeight())) {
+        int headX = head.getX();
+        int headY = head.getY();
+        if(headX <= 0 || headX >= board.getWidth() || headY <= 0 || headY >= board.getHeight()) {
+           return false;
+        } else {
             for (int i = 1; i < snakeVector.size(); i++) {
-                if (head.getX() != snakeVector.get(i).getX() && head.getY() != snakeVector.get(i).getY()) {
-                    return true;
+                if (headX == snakeVector.get(i).getX() || headY == snakeVector.get(i).getY()) {
+                    return false;
                 }
             }
+            return true;
         }
-        return false;
     }
     public int getLength() {
         return snakeVector.size();
@@ -124,11 +151,9 @@ public class Snake {
                 for(int k = 0; k < snakeVector.size(); k++) {
                     if(snakeVector.get(k).getX() == x && snakeVector.get(k).getY() == y) {
                         if(k== 0) {
-                            gameboard[y][x] = '0';
-                        } else if (k == 1) {
-                            gameboard[y][x] = '1';
+                            gameboard[y][x] = '*';
                         } else {
-                            gameboard[y][x] = '2';
+                            gameboard[y][x] = '.';
                         }
 //                        System.out.println(" x - " + x + " y - " + y + " * ");
                         break;
