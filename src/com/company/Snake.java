@@ -12,6 +12,7 @@ public class Snake {
     private Cell head;
     private Vector<Cell> snakeVector;
     Gameboard board = new Gameboard(20, 20);
+    Food food = null;
 
 
     public static void main(String[] Args) {
@@ -32,30 +33,23 @@ public class Snake {
         //------- Clean up ---------//
 
         Snake python = new Snake('R');
-//        while(python.isAlive()) {
-        if(python.isAlive()) {
+
             python.updateSnake();
-            python.updateSnake();
-            python.updateSnake();
-            python.eat();
-            python.eat();
-            python.eat();
             python.changeDir('D');
             python.updateSnake();
-            python.updateSnake();
-            python.eat();
-            python.eat();
-            python.changeDir('R');
-            python.updateSnake();
-            python.changeDir('U');
-            python.updateSnake();
-            python.changeDir('L');
-
-        }
-        python.updateSnake();
-
-        System.out.println(python.isAlive());
-
+//            python.updateSnake();
+//            python.eat();
+//            python.eat();
+//            python.eat();
+//            python.updateSnake();
+//            python.updateSnake();
+//            python.eat();
+//            python.eat();
+//            python.changeDir('R');
+//            python.updateSnake();
+//            python.changeDir('U');
+//            python.updateSnake();
+//            python.changeDir('L');
 
         python.setBoard(gameboard);
         python.displayBoard(gameboard);
@@ -66,9 +60,12 @@ public class Snake {
         snakeVector = new Vector<Cell>();
         snakeVector.add(head);
 
-        generateFood();
+        food = generateFood();
+        food.setxCord(2);
+        food.setyCord(2);
+        System.out.println(food.toString());
     }
-    public Cell generateFood() {
+    public Food generateFood() {
         Random rand = new Random();
 
         int foodX = rand.nextInt(20) + 1;
@@ -78,14 +75,18 @@ public class Snake {
                 foodX = rand.nextInt(20) + 1;
                 foodY = rand.nextInt(20) + 1;
             } else {
-                return new Cell(foodX, foodY, 'U');
+                break;
             }
         }
+        return new Food(foodX, foodY);
     }
     public void updateSnake() {
         updateDir();
         for(Cell cell : snakeVector) {
             cell.move();
+        }
+        if(isHeadAtFood()) {
+            eat();
         }
     }
     public void updateDir() {
@@ -120,10 +121,14 @@ public class Snake {
                 break;
         }
         snakeVector.add(snakeVector.size(), new Cell(lastX + changeInX, lastY + changeInY, dir));
-        generateFood();
-//        for(Cell cell : snakeVector) {
-//            System.out.println(cell.toString());
-//        }
+        food = generateFood();
+    }
+    public boolean isHeadAtFood() {
+        if(head.getX() == food.getXCord() && head.getY() == food.getYCord())
+            return true;
+
+        return false;
+
     }
     public boolean isAlive() {
         int headX = head.getX();
@@ -148,6 +153,7 @@ public class Snake {
     public void setBoard(char[][] gameboard) {
         for (int y = 1; y < 21; y++) {
             for (int x = 1; x < 21; x++) {
+
                 for(int k = 0; k < snakeVector.size(); k++) {
                     if(snakeVector.get(k).getX() == x && snakeVector.get(k).getY() == y) {
                         if(k== 0) {
@@ -161,6 +167,9 @@ public class Snake {
                         gameboard[y][x] = ' ';
 //                        System.out.println(" x - " + x + " y - " + y + " space  ");
                     }
+                }
+                if(food.getXCord() == x && food.getYCord() == y) {
+                    gameboard[y][x] = 'o';
                 }
             }
         }
