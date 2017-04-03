@@ -33,10 +33,13 @@ public class Snake {
         //------- Clean up ---------//
 
         Snake python = new Snake('R');
-
+        python.updateSnake();
+        python.changeDir('D');
+        while(python.isAlive()) {
             python.updateSnake();
-            python.changeDir('D');
-            python.updateSnake();
+            python.setBoard(gameboard);
+            python.displayBoard(gameboard);
+        }
 //            python.updateSnake();
 //            python.eat();
 //            python.eat();
@@ -51,8 +54,8 @@ public class Snake {
 //            python.updateSnake();
 //            python.changeDir('L');
 
-        python.setBoard(gameboard);
-        python.displayBoard(gameboard);
+//        python.setBoard(gameboard);
+//        python.displayBoard(gameboard);
     }
     public Snake(char dir) {
         this.dir = dir;
@@ -63,7 +66,6 @@ public class Snake {
         food = generateFood();
         food.setxCord(2);
         food.setyCord(2);
-        System.out.println(food.toString());
     }
     public Food generateFood() {
         Random rand = new Random();
@@ -134,10 +136,10 @@ public class Snake {
         int headX = head.getX();
         int headY = head.getY();
         if(headX <= 0 || headX >= board.getWidth() || headY <= 0 || headY >= board.getHeight()) {
-           return false;
+            return false;
         } else {
             for (int i = 1; i < snakeVector.size(); i++) {
-                if (headX == snakeVector.get(i).getX() || headY == snakeVector.get(i).getY()) {
+                if (headX == snakeVector.get(i).getX() && headY == snakeVector.get(i).getY()) {
                     return false;
                 }
             }
