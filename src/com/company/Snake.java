@@ -90,6 +90,11 @@ public class Snake {
         if(isHeadAtFood()) {
             eat();
         }
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
     }
     public void updateDir() {
         for(int i = snakeVector.size()-1; i > 0; i--) {
