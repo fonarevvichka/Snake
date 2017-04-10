@@ -9,24 +9,38 @@ import java.awt.event.KeyListener;
  * Created by lhscompsci on 4/3/17.
  */
 
-public class SnakeRunner{
+public class SnakeRunner extends Frame {
     static Snake python;
     static char dir = 'R', prevDir = 'R';
     static int key;
+    static boolean start = false, pause = false;
     public static void main(String Args[]) {
         python = new Snake('R');
         JFrame frame = new JFrame();
         JPanel panel = new JPanel(new GridBagLayout());
 
-        panel.add(new JTextField(20));
+        frame.setTitle("Snake");
+
+
+        //--------------- Creating Welcome Text -----------------//
+        Label welcomeText = new Label("Press 'Space' to begin move around with the arrow keys");
+        welcomeText.setAlignment(Label.CENTER);
+        welcomeText.setBackground(Color.DARK_GRAY);
+        welcomeText.setForeground(Color.WHITE);
+        panel.add(welcomeText);
+        //--------------- Creating Welcome Text -----------------//
+
+        //--------------- Borders RIP -------------------------//
+        //--------------- Borders RIP -------------------------//
+
         frame.getContentPane().add(panel);
         frame.setVisible(true);
 
         panel.setFocusable(true);
         panel.requestFocus();
-        panel.setBackground(Color.red);
+        panel.setBackground(Color.darkGray);
 
-        panel.setSize(400, 400);
+        frame.setSize(1600,1600);
         panel.setVisible(true);
         panel.addKeyListener(new KeyListener() {
             @Override
@@ -57,6 +71,13 @@ public class SnakeRunner{
                             dir = 'U';
                         }
                         break;
+                    case KeyEvent.VK_SPACE:
+                        start = true;
+                        pause = false;
+                        break;
+                    case KeyEvent.VK_ESCAPE:
+                        pause = true;
+                        break;
                 }
             }
             @Override
@@ -73,7 +94,6 @@ public class SnakeRunner{
             public void run() {
                 while(running) {
                     while (python.isAlive()) {
-
                         System.out.println(dir);
                         python.changeDir(dir);
                         python.updateSnake();
@@ -86,7 +106,13 @@ public class SnakeRunner{
                 }
             }
         }, "snakeRunner");
+        while(!start) {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
         snakeRunner.start();
     }
-
 }

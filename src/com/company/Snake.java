@@ -40,22 +40,6 @@ public class Snake {
             python.setBoard(gameboard);
             python.displayBoard(gameboard);
         }
-//            python.updateSnake();
-//            python.eat();
-//            python.eat();
-//            python.eat();
-//            python.updateSnake();
-//            python.updateSnake();
-//            python.eat();
-//            python.eat();
-//            python.changeDir('R');
-//            python.updateSnake();
-//            python.changeDir('U');
-//            python.updateSnake();
-//            python.changeDir('L');
-
-//        python.setBoard(gameboard);
-//        python.displayBoard(gameboard);
     }
     public Snake(char dir) {
         this.dir = dir;
@@ -90,6 +74,7 @@ public class Snake {
         if(isHeadAtFood()) {
             eat();
         }
+
         try {
             Thread.sleep(100);
         } catch (InterruptedException ex) {
