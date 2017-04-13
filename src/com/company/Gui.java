@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
+import java.util.Vector;
 
 /**
  * Created by lhscompsci on 4/12/17.
@@ -12,9 +14,14 @@ public class Gui extends Frame {
     private int width, height;
     private int key;
     private char dir = 'R';
-
-    private Label label;
     private boolean start = false, pause = false;
+    private Label label;
+    private JPanel panel;
+    private JFrame frame;
+//    private Vector<Icon> snake;
+    private Icon snakeCell;
+    private Icon food;
+
     public Gui(int width, int height) {
         this.width = width;
         this.height = height;
@@ -26,18 +33,21 @@ public class Gui extends Frame {
         label.setAlignment(Label.CENTER);
         label.setBackground(Color.DARK_GRAY);
         label.setForeground(Color.WHITE);
-
         // ----------- Label Setup ---------//
+
         // ----------- Panel Setup ---------//
-        JPanel panel = new JPanel(new GridBagLayout()); //try spring
+        panel = new JPanel(new GridBagLayout()); //try spring
         panel.add(label);
         panel.setVisible(true);
         panel.setFocusable(true);
         panel.requestFocus();
         panel.setBackground(Color.darkGray);
-
         // ----------- Panel Setup ---------//
 
+        //------------ Image Setup ---------//
+        snakeCell = new ImageIcon("snakeCell.png");
+        food = new ImageIcon("snakeFood.png");
+        //------------ Image Setup ---------//
 
         //-------- Key Listener --------//
         panel.addKeyListener(new KeyListener() {
@@ -82,8 +92,9 @@ public class Gui extends Frame {
             public void keyReleased(KeyEvent e) {}
         });
         //-------- Key Listener --------//
+
         // ----------- Frame Setup ---------//
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.setTitle("Snake");
         frame.getContentPane().add(panel);
         frame.pack();
@@ -108,6 +119,11 @@ public class Gui extends Frame {
             label.setText("Paused, press 'Space' to resume");
         } else if (text == 2) {
             label.setText("");
+        }
+    }
+    public void updateGui(Snake python) {
+        for(int i = 0; i < python.getLength(); i++) {
+            panel.add(snakeCell, python.getCell(i).getX(), python.getCell(i).getY());
         }
     }
 }

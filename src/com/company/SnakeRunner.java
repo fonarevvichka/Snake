@@ -11,9 +11,7 @@ import java.awt.event.KeyListener;
 
 public class SnakeRunner extends Frame {
     static Snake python;
-    static char dir = 'R', prevDir = 'R';
-    static int key;
-    static boolean start = false, pause = false;
+    static char dir = 'R';
     public static void main(String Args[]) {
         python = new Snake('R');
 
