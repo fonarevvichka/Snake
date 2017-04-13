@@ -76,7 +76,7 @@ public class Snake {
         }
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(100);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }

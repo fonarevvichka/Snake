@@ -17,7 +17,7 @@ public class SnakeRunner extends Frame {
     public static void main(String Args[]) {
         python = new Snake('R');
 
-        Gui gui = new Gui(1600,1600);
+        Gui gui = new Gui(1920*2/3,1080*2/3);
         //make a gameboard
         Thread snakeRunner = new Thread(new Runnable() {
             private boolean running = true;

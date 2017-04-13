@@ -29,7 +29,7 @@ public class Gui extends Frame {
 
         // ----------- Label Setup ---------//
         // ----------- Panel Setup ---------//
-        JPanel panel = new JPanel(new GridBagLayout());
+        JPanel panel = new JPanel(new GridBagLayout()); //try spring
         panel.add(label);
         panel.setVisible(true);
         panel.setFocusable(true);
@@ -85,10 +85,10 @@ public class Gui extends Frame {
         // ----------- Frame Setup ---------//
         JFrame frame = new JFrame();
         frame.setTitle("Snake");
-//        frame.setSize(width, height);
         frame.getContentPane().add(panel);
-        frame.setVisible(true);
         frame.pack();
+        frame.setSize(width, height);
+        frame.setVisible(true);
         // ----------- Frame Setup ---------//
 
     }
