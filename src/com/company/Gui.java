@@ -4,13 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.FileNotFoundException;
-import java.util.Vector;
+import java.awt.Graphics;
 
 /**
  * Created by lhscompsci on 4/12/17.
  */
-public class Gui extends Frame {
+public class Gui extends JPanel {
     private int width, height;
     private int key;
     private char dir = 'R';
@@ -95,6 +94,8 @@ public class Gui extends Frame {
 
         // ----------- Frame Setup ---------//
         frame = new JFrame();
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Snake");
         frame.getContentPane().add(panel);
         frame.pack();
@@ -102,6 +103,16 @@ public class Gui extends Frame {
         frame.setVisible(true);
         // ----------- Frame Setup ---------//
 
+        //----------- Draw Snake -----------//
+//        g.setColor(Color.yellow);
+//        g.fillRect(15/2, 15/2, 15, 15);
+        //----------- Draw Snake -----------//
+
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(Color.yellow);
+        g.fillRect(40,40, 20,20);
     }
     public char getDir() {
         return dir;
@@ -121,9 +132,15 @@ public class Gui extends Frame {
             label.setText("");
         }
     }
-    public void updateGui(Snake python) {
-        for(int i = 0; i < python.getLength(); i++) {
-            panel.add(snakeCell, python.getCell(i).getX(), python.getCell(i).getY());
-        }
-    }
+//    @Override
+//    public void paintComponent(Graphics g) {
+//
+//        super.paintComponent(g);
+//    }
+//    public void updateGui(Snake python) {
+//        for(int i = 0; i < python.getLength(); i++) {
+//            draw(python.getCell(i).getX(), python.getCell(i).getY());
+//        }
+//        panel.add(g);
+//    }
 }
