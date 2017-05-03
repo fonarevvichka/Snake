@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="82d195dc-b966-4084-9f22-d16de3f537b4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Food.java" afterPath="$PROJECT_DIR$/src/com/company/Food.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Gui.java" afterPath="$PROJECT_DIR$/src/com/company/Gui.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Snake.java" afterPath="$PROJECT_DIR$/src/com/company/Snake.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/SnakeRunner.java" afterPath="$PROJECT_DIR$/src/com/company/SnakeRunner.java" />
     </list>
     <ignored path="Snake.iws" />
@@ -31,49 +33,55 @@
       <file leaf-file-name="Snake.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Snake.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1185">
-              <caret line="177" column="38" selection-start-line="177" selection-start-column="38" selection-end-line="177" selection-end-column="38" />
+            <state relative-caret-position="257">
+              <caret line="47" column="30" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
                 <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
                 <element signature="method#eat#0;class#Snake#0" expanded="false" />
                 <element signature="method#isHeadAtFood#0;class#Snake#0" expanded="false" />
                 <element signature="method#isAlive#0;class#Snake#0" expanded="false" />
                 <element signature="method#setBoard#0;class#Snake#0" expanded="false" />
                 <element signature="method#displayBoard#0;class#Snake#0" expanded="false" />
-                <element signature="e#5285#5286#0" expanded="true" />
-                <element signature="e#5330#5331#0" expanded="true" />
+                <element signature="e#5291#5292#0" expanded="true" />
+                <element signature="e#5325#5326#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gui.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Food.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Food.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+              <folding>
+                <element signature="method#toString#0;class#Food#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gui.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Gui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+            <state relative-caret-position="244">
+              <caret line="124" column="99" selection-start-line="124" selection-start-column="99" selection-end-line="124" selection-end-column="99" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="class#1572:2951" expanded="false" />
-                <element signature="method#keyPressed#0;class#1572:2951" expanded="false" />
+                <element signature="method#keyPressed#0;class#1667:3046" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SnakeRunner.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SnakeRunner.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/SnakeRunner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state relative-caret-position="405">
+              <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2123#2124#0" expanded="true" />
-                <element signature="e#2150#2151#0" expanded="true" />
-                <element signature="e#2187#2188#0" expanded="true" />
-                <element signature="e#2211#2212#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -103,12 +111,12 @@
         <option value="$PROJECT_DIR$/src/com/company/Gameboard.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
         <option value="$PROJECT_DIR$/src/com/company/Cell.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Food.java" />
         <option value="$PROJECT_DIR$/src/com/company/snakeRunner.java" />
         <option value="$PROJECT_DIR$/src/com/company/SnakeGui.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Snake.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Gui.java" />
         <option value="$PROJECT_DIR$/src/com/company/SnakeRunner.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Snake.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Food.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Gui.java" />
       </list>
     </option>
   </component>
@@ -150,9 +158,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -205,6 +211,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -527,7 +535,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3513812" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3513812" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -609,10 +617,6 @@
           <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2123#2124#0" expanded="true" />
-            <element signature="e#2150#2151#0" expanded="true" />
-            <element signature="e#2187#2188#0" expanded="true" />
-            <element signature="e#2211#2212#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -630,15 +634,14 @@
           <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
             <element signature="method#isHeadAtFood#0;class#Snake#0" expanded="false" />
             <element signature="method#isAlive#0;class#Snake#0" expanded="false" />
             <element signature="method#setBoard#0;class#Snake#0" expanded="false" />
             <element signature="method#displayBoard#0;class#Snake#0" expanded="false" />
-            <element signature="e#5285#5286#0" expanded="true" />
-            <element signature="e#5330#5331#0" expanded="true" />
+            <element signature="e#5291#5292#0" expanded="true" />
+            <element signature="e#5325#5326#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -649,15 +652,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
             <element signature="method#isHeadAtFood#0;class#Snake#0" expanded="false" />
             <element signature="method#isAlive#0;class#Snake#0" expanded="false" />
             <element signature="method#setBoard#0;class#Snake#0" expanded="false" />
             <element signature="method#displayBoard#0;class#Snake#0" expanded="false" />
-            <element signature="e#5285#5286#0" expanded="true" />
-            <element signature="e#5330#5331#0" expanded="true" />
+            <element signature="e#5291#5292#0" expanded="true" />
+            <element signature="e#5325#5326#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -668,15 +670,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
             <element signature="method#isHeadAtFood#0;class#Snake#0" expanded="false" />
             <element signature="method#isAlive#0;class#Snake#0" expanded="false" />
             <element signature="method#setBoard#0;class#Snake#0" expanded="false" />
             <element signature="method#displayBoard#0;class#Snake#0" expanded="false" />
-            <element signature="e#5285#5286#0" expanded="true" />
-            <element signature="e#5330#5331#0" expanded="true" />
+            <element signature="e#5291#5292#0" expanded="true" />
+            <element signature="e#5325#5326#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -716,15 +717,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
             <element signature="method#isHeadAtFood#0;class#Snake#0" expanded="false" />
             <element signature="method#isAlive#0;class#Snake#0" expanded="false" />
             <element signature="method#setBoard#0;class#Snake#0" expanded="false" />
             <element signature="method#displayBoard#0;class#Snake#0" expanded="false" />
-            <element signature="e#5285#5286#0" expanded="true" />
-            <element signature="e#5330#5331#0" expanded="true" />
+            <element signature="e#5291#5292#0" expanded="true" />
+            <element signature="e#5325#5326#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -764,15 +764,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
             <element signature="method#isHeadAtFood#0;class#Snake#0" expanded="false" />
             <element signature="method#isAlive#0;class#Snake#0" expanded="false" />
             <element signature="method#setBoard#0;class#Snake#0" expanded="false" />
             <element signature="method#displayBoard#0;class#Snake#0" expanded="false" />
-            <element signature="e#5285#5286#0" expanded="true" />
-            <element signature="e#5330#5331#0" expanded="true" />
+            <element signature="e#5291#5292#0" expanded="true" />
+            <element signature="e#5325#5326#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -812,15 +811,14 @@
           <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
             <element signature="method#isHeadAtFood#0;class#Snake#0" expanded="false" />
             <element signature="method#isAlive#0;class#Snake#0" expanded="false" />
             <element signature="method#setBoard#0;class#Snake#0" expanded="false" />
             <element signature="method#displayBoard#0;class#Snake#0" expanded="false" />
-            <element signature="e#5285#5286#0" expanded="true" />
-            <element signature="e#5330#5331#0" expanded="true" />
+            <element signature="e#5291#5292#0" expanded="true" />
+            <element signature="e#5325#5326#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -853,15 +851,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
             <element signature="method#isHeadAtFood#0;class#Snake#0" expanded="false" />
             <element signature="method#isAlive#0;class#Snake#0" expanded="false" />
             <element signature="method#setBoard#0;class#Snake#0" expanded="false" />
             <element signature="method#displayBoard#0;class#Snake#0" expanded="false" />
-            <element signature="e#5285#5286#0" expanded="true" />
-            <element signature="e#5330#5331#0" expanded="true" />
+            <element signature="e#5291#5292#0" expanded="true" />
+            <element signature="e#5325#5326#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -895,15 +892,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
             <element signature="method#isHeadAtFood#0;class#Snake#0" expanded="false" />
             <element signature="method#isAlive#0;class#Snake#0" expanded="false" />
             <element signature="method#setBoard#0;class#Snake#0" expanded="false" />
             <element signature="method#displayBoard#0;class#Snake#0" expanded="false" />
-            <element signature="e#5285#5286#0" expanded="true" />
-            <element signature="e#5330#5331#0" expanded="true" />
+            <element signature="e#5291#5292#0" expanded="true" />
+            <element signature="e#5325#5326#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -937,15 +933,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
             <element signature="method#isHeadAtFood#0;class#Snake#0" expanded="false" />
             <element signature="method#isAlive#0;class#Snake#0" expanded="false" />
             <element signature="method#setBoard#0;class#Snake#0" expanded="false" />
             <element signature="method#displayBoard#0;class#Snake#0" expanded="false" />
-            <element signature="e#5285#5286#0" expanded="true" />
-            <element signature="e#5330#5331#0" expanded="true" />
+            <element signature="e#5291#5292#0" expanded="true" />
+            <element signature="e#5325#5326#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1002,13 +997,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Food.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/src.zip!/java/lang/Thread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="14010">
@@ -1033,47 +1021,51 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/SnakeGui.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/company/Gui.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Food.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+        <state relative-caret-position="90">
+          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#1572:2951" expanded="false" />
-            <element signature="method#keyPressed#0;class#1572:2951" expanded="false" />
+            <element signature="method#toString#0;class#Food#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Snake.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1185">
-          <caret line="177" column="38" selection-start-line="177" selection-start-column="38" selection-end-line="177" selection-end-column="38" />
+        <state relative-caret-position="257">
+          <caret line="47" column="30" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
             <element signature="method#isHeadAtFood#0;class#Snake#0" expanded="false" />
             <element signature="method#isAlive#0;class#Snake#0" expanded="false" />
             <element signature="method#setBoard#0;class#Snake#0" expanded="false" />
             <element signature="method#displayBoard#0;class#Snake#0" expanded="false" />
-            <element signature="e#5285#5286#0" expanded="true" />
-            <element signature="e#5330#5331#0" expanded="true" />
+            <element signature="e#5291#5292#0" expanded="true" />
+            <element signature="e#5325#5326#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/SnakeRunner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state relative-caret-position="405">
+          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2123#2124#0" expanded="true" />
-            <element signature="e#2150#2151#0" expanded="true" />
-            <element signature="e#2187#2188#0" expanded="true" />
-            <element signature="e#2211#2212#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Gui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="124" column="99" selection-start-line="124" selection-start-column="99" selection-end-line="124" selection-end-column="99" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#keyPressed#0;class#1667:3046" expanded="false" />
           </folding>
         </state>
       </provider>

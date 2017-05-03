@@ -16,19 +16,15 @@ public class Food {
     public int getXCord() {
         return xCord;
     }
-
     public int getYCord() {
         return yCord;
     }
-
     public void setxCord(int xCord) {
         this.xCord = xCord;
     }
-
     public void setyCord(int yCord) {
         this.yCord = yCord;
     }
-
     @Override
     public String toString() {
         return "Food{" +

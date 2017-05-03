@@ -174,7 +174,7 @@ public class Snake {
             System.out.print("\n");
         }
     }
-    public Cell getCell(int index) {
-        return snakeVector.get(index);
+    public Vector<Cell> getSnakeVector() {
+        return snakeVector;
     }
 }

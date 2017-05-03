@@ -15,11 +15,12 @@ public class Gui extends JPanel {
     private char dir = 'R';
     private boolean start = false, pause = false;
     private Label label;
-    private JPanel panel;
     private JFrame frame;
 //    private Vector<Icon> snake;
-    private Icon snakeCell;
-    private Icon food;
+//    private Icon snakeCell;
+//    private Icon food;
+
+    int x = 0, y = 0;
 
     public Gui(int width, int height) {
         this.width = width;
@@ -28,28 +29,28 @@ public class Gui extends JPanel {
 
         // ----------- Label Setup ---------//
 //        welcomeText = new Label("Press 'Space' to begin move around with the arrow keys");
-        label = new Label("");
+        label = new Label("                                                                                              ");
         label.setAlignment(Label.CENTER);
         label.setBackground(Color.DARK_GRAY);
         label.setForeground(Color.WHITE);
         // ----------- Label Setup ---------//
 
         // ----------- Panel Setup ---------//
-        panel = new JPanel(new GridBagLayout()); //try spring
-        panel.add(label);
-        panel.setVisible(true);
-        panel.setFocusable(true);
-        panel.requestFocus();
-        panel.setBackground(Color.darkGray);
+//        panel = new JPanel(new GridBagLayout()); //try spring
+        this.add(label);
+        this.setVisible(true);
+        this.setFocusable(true);
+        this.requestFocus();
+        this.setBackground(Color.darkGray);
         // ----------- Panel Setup ---------//
 
         //------------ Image Setup ---------//
-        snakeCell = new ImageIcon("snakeCell.png");
-        food = new ImageIcon("snakeFood.png");
+//        snakeCell = new ImageIcon("snakeCell.png");
+//        food = new ImageIcon("snakeFood.png");
         //------------ Image Setup ---------//
 
         //-------- Key Listener --------//
-        panel.addKeyListener(new KeyListener() {
+        this.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {}
 
@@ -97,23 +98,33 @@ public class Gui extends JPanel {
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Snake");
-        frame.getContentPane().add(panel);
+        frame.getContentPane().add(this);
         frame.pack();
         frame.setSize(width, height);
         frame.setVisible(true);
         // ----------- Frame Setup ---------//
 
         //----------- Draw Snake -----------//
-//        g.setColor(Color.yellow);
-//        g.fillRect(15/2, 15/2, 15, 15);
         //----------- Draw Snake -----------//
-
     }
 
-    public void draw(Graphics g) {
-        g.setColor(Color.yellow);
-        g.fillRect(40,40, 20,20);
+//    public void draw(Graphics g) {
+//        g.setColor(Color.yellow);
+//        g.fillRect(40,40, 20,20);
+//    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        System.out.println("safsdf");
+        for(Cell cell : SnakeRunner.python.getSnakeVector()) {
+            g.setColor(Color.yellow);
+            g.fillRect(cell.getX()*15, cell.getY()*15, 15, 15);
+        }
+        g.setColor(Color.red);
+        g.fillRect(SnakeRunner.python.food.getXCord() * 15, SnakeRunner.python.food.getYCord() * 15, 15, 15);
     }
+
     public char getDir() {
         return dir;
     }
@@ -132,15 +143,4 @@ public class Gui extends JPanel {
             label.setText("");
         }
     }
-//    @Override
-//    public void paintComponent(Graphics g) {
-//
-//        super.paintComponent(g);
-//    }
-//    public void updateGui(Snake python) {
-//        for(int i = 0; i < python.getLength(); i++) {
-//            draw(python.getCell(i).getX(), python.getCell(i).getY());
-//        }
-//        panel.add(g);
-//    }
 }
