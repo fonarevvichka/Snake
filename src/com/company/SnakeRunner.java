@@ -1,9 +1,6 @@
 package com.company;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 /**
  * Created by lhscompsci on 4/3/17.
@@ -11,13 +8,12 @@ import java.awt.event.KeyListener;
 
 public class SnakeRunner extends JPanel {
     static Snake python;
-    static char dir = 'R';
     static Gui gui;
+    static boolean newSnakeMade = false;
 
     public static void main(String Args[]) {
         python = new Snake('R');
-
-        gui = new Gui(1080 * 2 / 3, 1080 * 2 / 3);
+        gui = new Gui();
         //make a gameboard
         Thread snakeRunner = new Thread(new Runnable() {
             private boolean running = true;
@@ -29,16 +25,18 @@ public class SnakeRunner extends JPanel {
             @Override
             public void run() {
                 while (running) {
+                    python.dir = 'R';
                     while (python.isAlive()) {
-                        if (!gui.isPaused()) {
+                        gui.restart = 0;
+                        if (!gui.pause) {
                             gui.labelMessage(2);
-                            dir = gui.getDir();
-                            System.out.println(dir);
-                            python.changeDir(dir);
+                            python.dir = gui.getDir();
+                            System.out.println(gui.restart);
+                            python.changeDir(python.dir);
                             python.updateSnake();
                             gui.repaint();
                             if (!python.isAlive()) {
-                                stopInTheNameOfLove();
+                                gui.start = false;
                             }
                         } else {
                             gui.labelMessage(1);
@@ -50,13 +48,27 @@ public class SnakeRunner extends JPanel {
                         }
                         //gui stuff
                     }
-                    //display lost message + score + hit space to try again and to reset snake /field
-                    //more gui stuff
+
+                    gui.labelMessage(3);
+
+                    if (gui.restart == 1 && !newSnakeMade) {
+                        python = new Snake('R');
+                        python.dir = 'R';
+                        newSnakeMade = true;
+                    }else if (gui.restart == 2) {
+                        gui.start = true;
+                        gui.restart = 0;
+
+                    }
                 }
+
+                //display lost message + score + hit space to try again and to reset snake /field
+                //more gui stuff
+//                }
             }
         }, "snakeRunner");
         gui.labelMessage(0);
-        while (!gui.isRunning()) {
+        while (!gui.start) {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException ex) {

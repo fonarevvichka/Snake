@@ -12,32 +12,37 @@ import java.awt.Graphics;
 public class Gui extends JPanel {
     private int width, height;
     private int key;
-    private char dir = 'R';
-    private boolean start = false, pause = false;
-    private Label label;
+    private boolean first = true;
+    private char dir = SnakeRunner.python.dir;
+    public boolean start = false, pause = false;
+    public int restart = 0;
+    private Label topLabel, bottomLabel;
     private JFrame frame;
 //    private Vector<Icon> snake;
 //    private Icon snakeCell;
 //    private Icon food;
 
-    int x = 0, y = 0;
-
-    public Gui(int width, int height) {
-        this.width = width;
-        this.height = height;
-
+    public Gui() {
+        this.width = 15 * (SnakeRunner.python.getBoard().getWidth());
+        this.height = 15 * (SnakeRunner.python.getBoard().getHeight()) + 22;
 
         // ----------- Label Setup ---------//
-//        welcomeText = new Label("Press 'Space' to begin move around with the arrow keys");
-        label = new Label("                                                                                              ");
-        label.setAlignment(Label.CENTER);
-        label.setBackground(Color.DARK_GRAY);
-        label.setForeground(Color.WHITE);
+        topLabel = new Label("                                                                                              ");
+        topLabel.setAlignment(Label.CENTER);
+        topLabel.setBackground(Color.DARK_GRAY);
+        topLabel.setForeground(Color.WHITE);
+
+        bottomLabel = new Label("                                                                                              ");
+        bottomLabel.setAlignment(Label.CENTER);
+        bottomLabel.setBackground(Color.DARK_GRAY);
+        bottomLabel.setForeground(Color.WHITE);
         // ----------- Label Setup ---------//
 
         // ----------- Panel Setup ---------//
 //        panel = new JPanel(new GridBagLayout()); //try spring
-        this.add(label);
+        this.add(topLabel);
+        this.add(bottomLabel);
+        this.setSize(width, height);
         this.setVisible(true);
         this.setFocusable(true);
         this.requestFocus();
@@ -57,6 +62,7 @@ public class Gui extends JPanel {
             @Override
             public void keyPressed(KeyEvent e) {
                 key = e.getKeyCode();
+                dir = SnakeRunner.python.dir;
 //                System.out.println(e.getKeyCode());
                 switch(key) {
                     case KeyEvent.VK_LEFT:
@@ -82,6 +88,8 @@ public class Gui extends JPanel {
                     case KeyEvent.VK_SPACE:
                         start = true;
                         pause = false;
+                        restart++;
+
                         break;
                     case KeyEvent.VK_ESCAPE:
                         pause = true;
@@ -101,6 +109,7 @@ public class Gui extends JPanel {
         frame.getContentPane().add(this);
         frame.pack();
         frame.setSize(width, height);
+//        frame.setSize(width, height)
         frame.setVisible(true);
         // ----------- Frame Setup ---------//
 
@@ -108,19 +117,14 @@ public class Gui extends JPanel {
         //----------- Draw Snake -----------//
     }
 
-//    public void draw(Graphics g) {
-//        g.setColor(Color.yellow);
-//        g.fillRect(40,40, 20,20);
-//    }
-
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        System.out.println("safsdf");
-        for(Cell cell : SnakeRunner.python.getSnakeVector()) {
-            g.setColor(Color.yellow);
-            g.fillRect(cell.getX()*15, cell.getY()*15, 15, 15);
-        }
+//        System.out.println("safsdf");
+            for (Cell cell : SnakeRunner.python.getSnakeVector()) {
+                g.setColor(Color.yellow);
+                g.fillRect(cell.getX() * 15, cell.getY() * 15,15, 15);
+            }
         g.setColor(Color.red);
         g.fillRect(SnakeRunner.python.food.getXCord() * 15, SnakeRunner.python.food.getYCord() * 15, 15, 15);
     }
@@ -128,19 +132,21 @@ public class Gui extends JPanel {
     public char getDir() {
         return dir;
     }
-    public boolean isRunning() {
-        return start;
-    }
-    public boolean isPaused() {
-        return pause;
-    }
     public void labelMessage(int text) {
         if(text == 0) {
-            label.setText("Press 'Space' to begin move around with the arrow keys");
+            topLabel.setText("Press 'Space' to begin move around with the arrow keys");
+            topLabel.setVisible(true);
         } else if (text == 1) {
-            label.setText("Paused, press 'Space' to resume");
+            topLabel.setText("Paused, press 'Space' to resume");
+            topLabel.setVisible(true);
         } else if (text == 2) {
-            label.setText("");
+            topLabel.setVisible(false);
+            bottomLabel.setVisible(false);
+        } else if (text == 3) {
+            topLabel.setText("You lost with a score of: " + SnakeRunner.python.getLength());
+            bottomLabel.setText("Press space to play again");
+            topLabel.setVisible(true);
+            bottomLabel.setVisible(true);
         }
     }
 }
