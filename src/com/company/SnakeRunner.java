@@ -25,13 +25,12 @@ public class SnakeRunner extends JPanel {
             @Override
             public void run() {
                 while (running) {
-                    python.dir = 'R';
+                    gui.start = false;
                     while (python.isAlive()) {
-                        gui.restart = 0;
                         if (!gui.pause) {
                             gui.labelMessage(2);
                             python.dir = gui.getDir();
-                            System.out.println(gui.restart);
+//                            System.out.println(gui.isRestarting);
                             python.changeDir(python.dir);
                             python.updateSnake();
                             gui.repaint();
@@ -48,18 +47,31 @@ public class SnakeRunner extends JPanel {
                         }
                         //gui stuff
                     }
-
-                    gui.labelMessage(3);
-
-                    if (gui.restart == 1 && !newSnakeMade) {
-                        python = new Snake('R');
-                        python.dir = 'R';
-                        newSnakeMade = true;
-                    }else if (gui.restart == 2) {
-                        gui.start = true;
-                        gui.restart = 0;
-
+                    gui.resetKeyboardActions();
+                    gui.labelMessage(3); //score message
+                    //DEAD
+                    while(!gui.start) {
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
                     }
+//                    gui.isRestarting = false;
+                    gui.start = false;
+
+                    gui.labelMessage(0);
+                    python = new Snake('R');
+
+                    while (!gui.start) {
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    gui.labelMessage(2); //erase
+
                 }
 
                 //display lost message + score + hit space to try again and to reset snake /field

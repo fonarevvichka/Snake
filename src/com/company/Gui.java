@@ -15,9 +15,9 @@ public class Gui extends JPanel {
     private boolean first = true;
     private char dir = SnakeRunner.python.dir;
     public boolean start = false, pause = false;
-    public int restart = 0;
     private Label topLabel, bottomLabel;
     private JFrame frame;
+    private int text;
 //    private Vector<Icon> snake;
 //    private Icon snakeCell;
 //    private Icon food;
@@ -88,7 +88,6 @@ public class Gui extends JPanel {
                     case KeyEvent.VK_SPACE:
                         start = true;
                         pause = false;
-                        restart++;
 
                         break;
                     case KeyEvent.VK_ESCAPE:
@@ -120,11 +119,14 @@ public class Gui extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-//        System.out.println("safsdf");
-            for (Cell cell : SnakeRunner.python.getSnakeVector()) {
-                g.setColor(Color.yellow);
-                g.fillRect(cell.getX() * 15, cell.getY() * 15,15, 15);
-            }
+        for (Cell cell : SnakeRunner.python.getSnakeVector()) {
+            g.setColor(Color.yellow);
+            g.fillRect(cell.getX() * 15, cell.getY() * 15,15, 15);
+        }
+        if (text == 0 || text == 1 || text == 3) {
+            g.setColor(Color.BLACK);
+            g.fillRect(100, 10, 200, 100);
+        }
         g.setColor(Color.red);
         g.fillRect(SnakeRunner.python.food.getXCord() * 15, SnakeRunner.python.food.getYCord() * 15, 15, 15);
     }
@@ -133,6 +135,7 @@ public class Gui extends JPanel {
         return dir;
     }
     public void labelMessage(int text) {
+        this.text = text;
         if(text == 0) {
             topLabel.setText("Press 'Space' to begin move around with the arrow keys");
             topLabel.setVisible(true);
