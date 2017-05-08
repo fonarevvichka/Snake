@@ -12,10 +12,9 @@ import java.awt.Graphics;
 public class Gui extends JPanel {
     private int width, height;
     private int key;
-    private boolean first = true;
+    private String message;
     private char dir = SnakeRunner.python.dir;
     public boolean start = false, pause = false;
-    private Label topLabel, bottomLabel;
     private JFrame frame;
     private int text;
 //    private Vector<Icon> snake;
@@ -26,22 +25,8 @@ public class Gui extends JPanel {
         this.width = 15 * (SnakeRunner.python.getBoard().getWidth());
         this.height = 15 * (SnakeRunner.python.getBoard().getHeight()) + 22;
 
-        // ----------- Label Setup ---------//
-        topLabel = new Label("                                                                                              ");
-        topLabel.setAlignment(Label.CENTER);
-        topLabel.setBackground(Color.DARK_GRAY);
-        topLabel.setForeground(Color.WHITE);
-
-        bottomLabel = new Label("                                                                                              ");
-        bottomLabel.setAlignment(Label.CENTER);
-        bottomLabel.setBackground(Color.DARK_GRAY);
-        bottomLabel.setForeground(Color.WHITE);
-        // ----------- Label Setup ---------//
 
         // ----------- Panel Setup ---------//
-//        panel = new JPanel(new GridBagLayout()); //try spring
-        this.add(topLabel);
-        this.add(bottomLabel);
         this.setSize(width, height);
         this.setVisible(true);
         this.setFocusable(true);
@@ -123,12 +108,27 @@ public class Gui extends JPanel {
             g.setColor(Color.yellow);
             g.fillRect(cell.getX() * 15, cell.getY() * 15,15, 15);
         }
-        if (text == 0 || text == 1 || text == 3) {
-            g.setColor(Color.BLACK);
-            g.fillRect(100, 10, 200, 100);
-        }
         g.setColor(Color.red);
         g.fillRect(SnakeRunner.python.food.getXCord() * 15, SnakeRunner.python.food.getYCord() * 15, 15, 15);
+
+        switch(text) {
+            case 0:
+                message = "Press 'Space' to begin, move around with the arrow keys";
+                break;
+            case 1:
+                message = "Paused, press 'Space to resume";
+                break;
+            case 2:
+                message = "";
+                break;
+            case 3:
+                message = "Press space to try again, you lost with a score of: " + SnakeRunner.python.getLength();
+                break;
+        }
+//        System.out.println(message.length());
+        g.drawString(message,width/2 - (int) (message.length()*3.2), height/2);
+
+
     }
 
     public char getDir() {
@@ -136,20 +136,5 @@ public class Gui extends JPanel {
     }
     public void labelMessage(int text) {
         this.text = text;
-        if(text == 0) {
-            topLabel.setText("Press 'Space' to begin move around with the arrow keys");
-            topLabel.setVisible(true);
-        } else if (text == 1) {
-            topLabel.setText("Paused, press 'Space' to resume");
-            topLabel.setVisible(true);
-        } else if (text == 2) {
-            topLabel.setVisible(false);
-            bottomLabel.setVisible(false);
-        } else if (text == 3) {
-            topLabel.setText("You lost with a score of: " + SnakeRunner.python.getLength());
-            bottomLabel.setText("Press space to play again");
-            topLabel.setVisible(true);
-            bottomLabel.setVisible(true);
-        }
     }
 }
