@@ -28,49 +28,49 @@ public class SnakeRunner extends JPanel {
                     gui.start = false;
                     while (python.isAlive()) {
                         if (!gui.pause) {
-                            gui.labelMessage(2);
-                            python.dir = gui.getDir();
-//                            System.out.println(gui.isRestarting);
-                            python.changeDir(python.dir);
-                            python.updateSnake();
-                            gui.repaint();
+                            gui.labelMessage(2); // NO TEXT
+                            python.dir = gui.getDir(); // GET NEW DIR
+                            python.changeDir(python.dir); // UPDATE SNAKE DIR
+                            python.updateSnake(); // UPDATE SNAKE
+                            gui.repaint(); // REDRAW GUI
                             if (!python.isAlive()) {
                                 gui.start = false;
                             }
                         } else {
-                            gui.labelMessage(1);
+                            gui.labelMessage(1); // PAUSE MESSAGE
                             try {
                                 Thread.sleep(10);
                             } catch (InterruptedException ex) {
                                 ex.printStackTrace();
                             }
                         }
-                        //gui stuff
                     }
-                    gui.resetKeyboardActions();
-                    gui.labelMessage(3); //score message
+                    gui.labelMessage(3); //SCORE MESSAGE
                     //DEAD
-                    while(!gui.start) {
+                    while(!gui.start) { // WAIT FOR RESTART
                         try {
                             Thread.sleep(10);
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
                         }
                     }
-//                    gui.isRestarting = false;
+                    gui.resetKeyboardActions(); // RESET KEYBOARD INPUT
+                    python = new Snake('R'); // NEW SNAKE
+                    gui.labelMessage(0); // PRESS PLAY TO START MESSAGE
+                    gui.repaint();
+
+
                     gui.start = false;
 
-                    gui.labelMessage(0);
-                    python = new Snake('R');
 
-                    while (!gui.start) {
+                    while (!gui.start) { // WAIT FOR START
                         try {
                             Thread.sleep(10);
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
                         }
                     }
-                    gui.labelMessage(2); //erase
+                    gui.labelMessage(2); // NO TEXT
 
                 }
 

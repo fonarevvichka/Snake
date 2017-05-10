@@ -73,27 +73,30 @@ public class Snake {
         this.dir = dir;
     }
     public void eat() {
-        char dir = snakeVector.get(snakeVector.size()-1).getDir();
-        int lastX = snakeVector.get(snakeVector.size()-1).getX();
-        int lastY = snakeVector.get(snakeVector.size()-1).getY();
 
-        int changeInY = 0;
-        int changeInX = 0;
-        switch(dir) {
-            case 'U':
-                changeInY += 1;
-                break;
-            case 'D':
-                changeInY += -1;
-                break;
-            case 'L':
-                changeInX += 1;
-                break;
-            case 'R':
-                changeInX += -1;
-                break;
+        for(int i = 0; i < 2; i++) {
+            char dir = snakeVector.get(snakeVector.size() - 1).getDir();
+            int lastX = snakeVector.get(snakeVector.size() - 1).getX();
+            int lastY = snakeVector.get(snakeVector.size() - 1).getY();
+
+            int changeInY = 0;
+            int changeInX = 0;
+            switch (dir) {
+                case 'U':
+                    changeInY += 1;
+                    break;
+                case 'D':
+                    changeInY += -1;
+                    break;
+                case 'L':
+                    changeInX += 1;
+                    break;
+                case 'R':
+                    changeInX += -1;
+                    break;
+            }
+            snakeVector.add(snakeVector.size(), new Cell(lastX + changeInX, lastY + changeInY, dir));
         }
-        snakeVector.add(snakeVector.size(), new Cell(lastX + changeInX, lastY + changeInY, dir));
         food = generateFood();
     }
     public boolean isHeadAtFood() {

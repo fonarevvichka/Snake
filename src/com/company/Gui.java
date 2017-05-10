@@ -12,7 +12,8 @@ import java.awt.Graphics;
 public class Gui extends JPanel {
     private int width, height;
     private int key;
-    private String message;
+    private String topMessage, bottomMessage, scoreMessage;
+    int offset;
     private char dir = SnakeRunner.python.dir;
     public boolean start = false, pause = false;
     private JFrame frame;
@@ -23,8 +24,7 @@ public class Gui extends JPanel {
 
     public Gui() {
         this.width = 15 * (SnakeRunner.python.getBoard().getWidth());
-        this.height = 15 * (SnakeRunner.python.getBoard().getHeight()) + 22;
-
+        this.height = 15 * (SnakeRunner.python.getBoard().getHeight()) + 22 + 30; //22 --> account for toolbar, 30 --> score bar
 
         // ----------- Panel Setup ---------//
         this.setSize(width, height);
@@ -93,44 +93,68 @@ public class Gui extends JPanel {
         frame.getContentPane().add(this);
         frame.pack();
         frame.setSize(width, height);
-//        frame.setSize(width, height)
         frame.setVisible(true);
         // ----------- Frame Setup ---------//
-
-        //----------- Draw Snake -----------//
-        //----------- Draw Snake -----------//
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+
+        //----------------- Score Bar -----------------//
+        g.setColor(new Color(45, 45, 45));
+        g.fillRect(0, height-39, width, 20);
+
+        g.setColor(Color.WHITE);
+        scoreMessage = "Score: " + SnakeRunner.python.getLength();
+        g.drawString(scoreMessage, width - g.getFontMetrics().stringWidth(scoreMessage) - 5, height - 25);
+        //----------------- Score Bar -----------------//
+
+        g.setColor(Color.yellow);
         for (Cell cell : SnakeRunner.python.getSnakeVector()) {
-            g.setColor(Color.yellow);
-            g.fillRect(cell.getX() * 15, cell.getY() * 15,15, 15);
+            g.fillRect(cell.getX() * 15, cell.getY() * 15,13, 13);
         }
         g.setColor(Color.red);
-        g.fillRect(SnakeRunner.python.food.getXCord() * 15, SnakeRunner.python.food.getYCord() * 15, 15, 15);
+        g.fillRect(SnakeRunner.python.food.getXCord() * 15, SnakeRunner.python.food.getYCord() * 15, 13, 13);
 
         switch(text) {
             case 0:
-                message = "Press 'Space' to begin, move around with the arrow keys";
+                topMessage = "Press 'Space' to begin, move around with the arrow keys";
+                bottomMessage = "";
+                offset = 0;
                 break;
             case 1:
-                message = "Paused, press 'Space to resume";
+                topMessage = "Paused, press 'Space to resume";
+                bottomMessage = "";
+                offset = 0;
+
                 break;
             case 2:
-                message = "";
+                topMessage = "";
+                bottomMessage = "";
+                offset = 0;
                 break;
             case 3:
-                message = "Press space to try again, you lost with a score of: " + SnakeRunner.python.getLength();
+                offset = 10;
+                topMessage = "You lost with a score of: " + SnakeRunner.python.getLength();
+                bottomMessage = "Press space to try again";
                 break;
         }
-//        System.out.println(message.length());
-        g.drawString(message,width/2 - (int) (message.length()*3.2), height/2);
+        if(text != 2) {
+            g.setColor(new Color(140,140,140,200));
+            g.fillRect(width/2 - (g.getFontMetrics().stringWidth(topMessage))/2 - 5, height/2 - offset - 25, g.getFontMetrics().stringWidth(topMessage) + 10, 20);
+            if(text == 3) {
+                g.fillRect(width / 2 - g.getFontMetrics().stringWidth(topMessage) / 2 - 5, height / 2 + offset - 25, g.getFontMetrics().stringWidth(topMessage) + 10, 20);
+            }
+        }
+        g.setColor(Color.white);
+
+        g.drawString(topMessage, width/2 - (g.getFontMetrics().stringWidth(topMessage))/2, height/2 - offset - 10);
+        g.drawString(bottomMessage, width/2 - g.getFontMetrics().stringWidth(bottomMessage)/2, height/2 + offset - 10);
 
 
     }
-
     public char getDir() {
         return dir;
     }
