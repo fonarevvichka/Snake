@@ -11,36 +11,37 @@ public class Snake {
     public char dir;
     private Cell head;
     private Vector<Cell> snakeVector;
-    private final int width = 38, height = 38;
-    Gameboard board = new Gameboard(width, height);
+    private int width = 38, height = 38;
+    private Gameboard board;
     Food food = null;
 
 
     public static void main(String[] Args) {
-        Snake python = new Snake('R');
-        python.updateSnake();
-        python.changeDir('D');
-        while(python.isAlive()) {
-            python.updateSnake();
-        }
+//        Snake python = new Snake('R');
+//        python.updateSnake();
+//        python.changeDir('D');
+//        while(python.isAlive()) {
+//            python.updateSnake();
+//        }
     }
-    public Snake(char dir) {
+    public Snake(char dir, Gameboard board) {
         this.dir = dir;
+
+        this.board = board;
         head = new Cell(0,0, dir);
         snakeVector = new Vector<Cell>();
         snakeVector.add(head);
-
         food = generateFood();
     }
     public Food generateFood() {
         Random rand = new Random();
 
-        int foodX = rand.nextInt(width);
-        int foodY = rand.nextInt(height);
+        int foodX = rand.nextInt(board.getWidth());
+        int foodY = rand.nextInt(board.getHeight());
         for (int i = 0; i < snakeVector.size(); i++) {
             if (foodX == snakeVector.get(i).getX() || foodY == snakeVector.get(i).getY()) {
-                foodX = rand.nextInt(width);
-                foodY = rand.nextInt(height);
+                foodX = rand.nextInt(board.getWidth());
+                foodY = rand.nextInt(board.getHeight());
             } else {
                 break;
             }

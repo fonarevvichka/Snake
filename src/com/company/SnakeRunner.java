@@ -8,25 +8,24 @@ import javax.swing.*;
 
 public class SnakeRunner extends JPanel {
     static Snake python;
+    static Gameboard board;
     static Gui gui;
     static boolean newSnakeMade = false;
 
     public static void main(String Args[]) {
-        python = new Snake('R');
+        board = new Gameboard(38, 38);
+        python = new Snake('R', board);
         gui = new Gui();
-        //make a gameboard
         Thread snakeRunner = new Thread(new Runnable() {
             private boolean running = true;
-
-            public void stopInTheNameOfLove() {
-                running = false;
-            }
 
             @Override
             public void run() {
                 while (running) {
                     gui.start = false;
                     while (python.isAlive()) {
+                        board.setWidth(gui.getWidth()/15);
+                        board.setHeight((gui.getHeight()-22)/15);
                         if (!gui.pause) {
                             gui.labelMessage(2); // NO TEXT
                             python.dir = gui.getDir(); // GET NEW DIR
@@ -55,7 +54,9 @@ public class SnakeRunner extends JPanel {
                         }
                     }
                     gui.resetKeyboardActions(); // RESET KEYBOARD INPUT
-                    python = new Snake('R'); // NEW SNAKE
+                    python = new Snake('R', board); // NEW SNAKE
+//                    python.board.setHeight(gui.getHeight());
+//                    python.board.setWidth(gui.getWidth());
                     gui.labelMessage(0); // PRESS PLAY TO START MESSAGE
                     gui.repaint();
 

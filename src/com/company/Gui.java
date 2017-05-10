@@ -23,8 +23,8 @@ public class Gui extends JPanel {
 //    private Icon food;
 
     public Gui() {
-        this.width = 15 * (SnakeRunner.python.getBoard().getWidth());
-        this.height = 15 * (SnakeRunner.python.getBoard().getHeight()) + 22 + 30; //22 --> account for toolbar, 30 --> score bar
+        this.width = 15 * (SnakeRunner.board.getWidth());
+        this.height = 15 * (SnakeRunner.board.getHeight()) + 22; //22 --> account for toolbar, 30 --> score bar
 
         // ----------- Panel Setup ---------//
         this.setSize(width, height);
@@ -48,7 +48,6 @@ public class Gui extends JPanel {
             public void keyPressed(KeyEvent e) {
                 key = e.getKeyCode();
                 dir = SnakeRunner.python.dir;
-//                System.out.println(e.getKeyCode());
                 switch(key) {
                     case KeyEvent.VK_LEFT:
                         if(dir != 'R') {
@@ -87,7 +86,7 @@ public class Gui extends JPanel {
 
         // ----------- Frame Setup ---------//
         frame = new JFrame();
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Snake");
         frame.getContentPane().add(this);
@@ -100,15 +99,16 @@ public class Gui extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        width = getWidth();
+        height = getHeight();
 
         //----------------- Score Bar -----------------//
         g.setColor(new Color(45, 45, 45));
-        g.fillRect(0, height-39, width, 20);
+        g.fillRect(0, height-20, width, 20);
 
         g.setColor(Color.WHITE);
         scoreMessage = "Score: " + SnakeRunner.python.getLength();
-        g.drawString(scoreMessage, width - g.getFontMetrics().stringWidth(scoreMessage) - 5, height - 25);
+        g.drawString(scoreMessage, width - g.getFontMetrics().stringWidth(scoreMessage) - 5, height - 5);
         //----------------- Score Bar -----------------//
 
         g.setColor(Color.yellow);
