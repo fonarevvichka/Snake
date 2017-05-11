@@ -16,6 +16,7 @@ public class Gui extends JPanel {
     int offset;
     private char dir = SnakeRunner.python.dir;
     public boolean start = false, pause = false;
+    public char speed = 'M';
     private JFrame frame;
     private int text;
 //    private Vector<Icon> snake;
@@ -77,6 +78,18 @@ public class Gui extends JPanel {
                     case KeyEvent.VK_ESCAPE:
                         pause = true;
                         break;
+                    case KeyEvent.VK_S:
+                        speed = 'S';
+                        start = true;
+                        break;
+                    case KeyEvent.VK_M:
+                        speed = 'M';
+                        start = true;
+                        break;
+                    case KeyEvent.VK_F:
+                        speed = 'F';
+                        start = true;
+                        break;
                 }
             }
             @Override
@@ -120,7 +133,7 @@ public class Gui extends JPanel {
 
         switch(text) {
             case 0:
-                topMessage = "Press 'Space' to begin, move around with the arrow keys";
+                topMessage = "Press 'S', 'M', or 'F' for speed and to begin, move around with the arrow keys";
                 bottomMessage = "";
                 offset = 0;
                 break;

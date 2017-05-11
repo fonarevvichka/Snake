@@ -10,11 +10,10 @@ public class SnakeRunner extends JPanel {
     static Snake python;
     static Gameboard board;
     static Gui gui;
-    static boolean newSnakeMade = false;
 
     public static void main(String Args[]) {
         board = new Gameboard(38, 38);
-        python = new Snake('R', board);
+        python = new Snake('S', board, 'M');
         gui = new Gui();
         Thread snakeRunner = new Thread(new Runnable() {
             private boolean running = true;
@@ -54,10 +53,11 @@ public class SnakeRunner extends JPanel {
                         }
                     }
                     gui.resetKeyboardActions(); // RESET KEYBOARD INPUT
-                    python = new Snake('R', board); // NEW SNAKE
+                    python = new Snake('S', board, 'M'); // NEW SNAKE
 //                    python.board.setHeight(gui.getHeight());
 //                    python.board.setWidth(gui.getWidth());
                     gui.labelMessage(0); // PRESS PLAY TO START MESSAGE
+
                     gui.repaint();
 
 
@@ -71,6 +71,7 @@ public class SnakeRunner extends JPanel {
                             ex.printStackTrace();
                         }
                     }
+                    python.setSpeed(gui.speed);
                     gui.labelMessage(2); // NO TEXT
 
                 }
@@ -88,6 +89,7 @@ public class SnakeRunner extends JPanel {
                 ex.printStackTrace();
             }
         }
+        python.setSpeed(gui.speed);
         gui.labelMessage(2);
         snakeRunner.start();
     }

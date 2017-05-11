@@ -7,11 +7,10 @@ import java.util.Vector;
  * Created by lhscompsci on 3/22/17.
  */
 public class Snake {
-    private int length = 0;
     public char dir;
     private Cell head;
+    private int speed;
     private Vector<Cell> snakeVector;
-    private int width = 38, height = 38;
     private Gameboard board;
     Food food = null;
 
@@ -24,9 +23,20 @@ public class Snake {
 //            python.updateSnake();
 //        }
     }
-    public Snake(char dir, Gameboard board) {
+    public Snake(char dir, Gameboard board, char speed) {
         this.dir = dir;
-
+        switch(speed) {
+            case 'S':
+                this.speed = 100;
+                break;
+            case 'M':
+                this.speed = 75;
+                break;
+            case 'F':
+                this.speed = 50;
+                break;
+        }
+        this.speed = speed;
         this.board = board;
         head = new Cell(0,0, dir);
         snakeVector = new Vector<Cell>();
@@ -58,7 +68,7 @@ public class Snake {
         }
 
         try {
-            Thread.sleep(100);
+            Thread.sleep(speed);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
@@ -164,5 +174,18 @@ public class Snake {
     }
     public Gameboard getBoard() {
         return board;
+    }
+    public void setSpeed(char speed) {
+        switch(speed) {
+            case 'S':
+                this.speed = 100;
+                break;
+            case 'M':
+                this.speed = 75;
+                break;
+            case 'F':
+                this.speed = 50;
+                break;
+        }
     }
 }
