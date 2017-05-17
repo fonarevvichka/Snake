@@ -11,11 +11,12 @@ import java.awt.Graphics;
  */
 public class Gui extends JPanel {
     private int pixelWidth, pixelHeight;
+    private int cleanWidth, cleanHeight;
     private int key;
     private String topMessage, bottomMessage, scoreMessage;
     int offset;
     private char dir = SnakeRunner.python.dir;
-    public boolean start = false, pause = false;
+    public boolean start = false, pause = true;
     public char speed = 'M';
     private JFrame frame;
     private int text;
@@ -71,11 +72,8 @@ public class Gui extends JPanel {
                         break;
                     case KeyEvent.VK_SPACE:
                         start = true;
-                        pause = false;
+                        pause = !pause;
 
-                        break;
-                    case KeyEvent.VK_ESCAPE:
-                        pause = true;
                         break;
                     case KeyEvent.VK_1:
                         speed = 'S';
@@ -112,11 +110,12 @@ public class Gui extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         pixelWidth = getWidth();
-        pixelHeight = super.getHeight();
-
+        pixelHeight = getHeight();
+        cleanWidth = (pixelWidth /15)*15;
+        cleanHeight = (pixelHeight /15)*15;
         //----------------- Paint Board ---------------//
         g.setColor(Color.darkGray);
-        g.fillRect(0,0, (pixelWidth / 15) * 15, ((pixelHeight) / 15) * 15); //gets rid of overflow pixels
+        g.fillRect(0,0, cleanWidth, cleanHeight); //gets rid of overflow pixels
         //----------------- Paint Board ---------------//
 
 
@@ -126,7 +125,7 @@ public class Gui extends JPanel {
 
         g.setColor(Color.WHITE);
         scoreMessage = "Score: " + SnakeRunner.python.getLength();
-        g.drawString(scoreMessage, pixelWidth - g.getFontMetrics().stringWidth(scoreMessage) - 10, pixelHeight - 10);
+        g.drawString(scoreMessage, cleanWidth - g.getFontMetrics().stringWidth(scoreMessage) - 10, cleanHeight - 10);
         //----------------- Score Bar -----------------//
 
         //----------------- Snake ---------------------//
