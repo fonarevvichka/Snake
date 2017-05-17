@@ -10,7 +10,7 @@ import java.awt.Graphics;
  * Created by lhscompsci on 4/12/17.
  */
 public class Gui extends JPanel {
-    private int width, height;
+    private int pixelWidth, pixelHeight;
     private int key;
     private String topMessage, bottomMessage, scoreMessage;
     int offset;
@@ -24,21 +24,16 @@ public class Gui extends JPanel {
 //    private Icon food;
 
     public Gui() {
-        this.width = 15 * (SnakeRunner.board.getWidth());
-        this.height = 15 * (SnakeRunner.board.getHeight()) + 22; //22 --> account for toolbar, 30 --> score bar
+        this.pixelWidth = 15 * (SnakeRunner.board.getWidth());
+        this.pixelHeight = 15 * (SnakeRunner.board.getHeight()) + 22; //22 --> account for toolbar, 20 --> score bar
 
         // ----------- Panel Setup ---------//
-        this.setSize(width, height);
+        this.setSize(pixelWidth, pixelHeight);
         this.setVisible(true);
         this.setFocusable(true);
         this.requestFocus();
-        this.setBackground(Color.darkGray);
+        this.setBackground(new Color(45, 45, 45));
         // ----------- Panel Setup ---------//
-
-        //------------ Image Setup ---------//
-//        snakeCell = new ImageIcon("snakeCell.png");
-//        food = new ImageIcon("snakeFood.png");
-        //------------ Image Setup ---------//
 
         //-------- Key Listener --------//
         this.addKeyListener(new KeyListener() {
@@ -50,21 +45,25 @@ public class Gui extends JPanel {
                 key = e.getKeyCode();
                 dir = SnakeRunner.python.dir;
                 switch(key) {
+                    case KeyEvent.VK_A:
                     case KeyEvent.VK_LEFT:
                         if(dir != 'R') {
                             dir = 'L';
                         }
                         break;
+                    case KeyEvent.VK_D:
                     case KeyEvent.VK_RIGHT:
                         if(dir != 'L') {
                             dir = 'R';
                         }
                         break;
+                    case KeyEvent.VK_S:
                     case KeyEvent.VK_DOWN:
                         if(dir != 'U') {
                             dir = 'D';
                         }
                         break;
+                    case KeyEvent.VK_W:
                     case KeyEvent.VK_UP:
                         if(dir != 'D') {
                             dir = 'U';
@@ -78,15 +77,15 @@ public class Gui extends JPanel {
                     case KeyEvent.VK_ESCAPE:
                         pause = true;
                         break;
-                    case KeyEvent.VK_S:
+                    case KeyEvent.VK_1:
                         speed = 'S';
                         start = true;
                         break;
-                    case KeyEvent.VK_M:
+                    case KeyEvent.VK_2:
                         speed = 'M';
                         start = true;
                         break;
-                    case KeyEvent.VK_F:
+                    case KeyEvent.VK_3:
                         speed = 'F';
                         start = true;
                         break;
@@ -104,7 +103,7 @@ public class Gui extends JPanel {
         frame.setTitle("Snake");
         frame.getContentPane().add(this);
         frame.pack();
-        frame.setSize(width, height);
+        frame.setSize(pixelWidth, pixelHeight);
         frame.setVisible(true);
         // ----------- Frame Setup ---------//
     }
@@ -112,28 +111,41 @@ public class Gui extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        width = getWidth();
-        height = getHeight();
+        pixelWidth = getWidth();
+        pixelHeight = super.getHeight();
+
+        //----------------- Paint Board ---------------//
+        g.setColor(Color.darkGray);
+        g.fillRect(0,0, (pixelWidth / 15) * 15, ((pixelHeight) / 15) * 15); //gets rid of overflow pixels
+        //----------------- Paint Board ---------------//
+
 
         //----------------- Score Bar -----------------//
-        g.setColor(new Color(45, 45, 45));
-        g.fillRect(0, height-20, width, 20);
+//        g.setColor(new Color(45, 45, 45));
+//        g.fillRect(0, pixelHeight - 30, pixelWidth, 30);
 
         g.setColor(Color.WHITE);
         scoreMessage = "Score: " + SnakeRunner.python.getLength();
-        g.drawString(scoreMessage, width - g.getFontMetrics().stringWidth(scoreMessage) - 5, height - 5);
+        g.drawString(scoreMessage, pixelWidth - g.getFontMetrics().stringWidth(scoreMessage) - 10, pixelHeight - 10);
         //----------------- Score Bar -----------------//
 
+        //----------------- Snake ---------------------//
         g.setColor(Color.yellow);
         for (Cell cell : SnakeRunner.python.getSnakeVector()) {
             g.fillRect(cell.getX() * 15, cell.getY() * 15,13, 13);
         }
+        //----------------- Snake ---------------------//
+
+        //----------------- Food ---------------------//
         g.setColor(Color.red);
         g.fillRect(SnakeRunner.python.food.getXCord() * 15, SnakeRunner.python.food.getYCord() * 15, 13, 13);
+        //----------------- Food ---------------------//
+
+        //----------------- Set Text -----------------//
 
         switch(text) {
             case 0:
-                topMessage = "Press 'S', 'M', or 'F' for speed and to begin, move around with the arrow keys";
+                topMessage = "Press '1', '2', or '3' for speed and to begin, move around with the arrow keys, or WASD";
                 bottomMessage = "";
                 offset = 0;
                 break;
@@ -154,17 +166,23 @@ public class Gui extends JPanel {
                 bottomMessage = "Press space to try again";
                 break;
         }
+        //----------------- Set Text ------------------------//
+
+        //----------------- Message background ---------------------//
         if(text != 2) {
-            g.setColor(new Color(140,140,140,200));
-            g.fillRect(width/2 - (g.getFontMetrics().stringWidth(topMessage))/2 - 5, height/2 - offset - 25, g.getFontMetrics().stringWidth(topMessage) + 10, 20);
+            g.setColor(new Color(45,45,45,200));
+            g.fillRect(pixelWidth /2 - (g.getFontMetrics().stringWidth(topMessage))/2 - 5, pixelHeight /2 - offset - 25, g.getFontMetrics().stringWidth(topMessage) + 10, 20);
             if(text == 3) {
-                g.fillRect(width / 2 - g.getFontMetrics().stringWidth(topMessage) / 2 - 5, height / 2 + offset - 25, g.getFontMetrics().stringWidth(topMessage) + 10, 20);
+                g.fillRect(pixelWidth / 2 - g.getFontMetrics().stringWidth(topMessage) / 2 - 5, pixelHeight / 2 + offset - 25, g.getFontMetrics().stringWidth(topMessage) + 10, 20);
             }
         }
-        g.setColor(Color.white);
+        //----------------- Message background ---------------------//
 
-        g.drawString(topMessage, width/2 - (g.getFontMetrics().stringWidth(topMessage))/2, height/2 - offset - 10);
-        g.drawString(bottomMessage, width/2 - g.getFontMetrics().stringWidth(bottomMessage)/2, height/2 + offset - 10);
+        //----------------- Paint Text -----------------------------//
+        g.setColor(Color.white);
+        g.drawString(topMessage, pixelWidth /2 - (g.getFontMetrics().stringWidth(topMessage))/2, pixelHeight /2 - offset - 10);
+        g.drawString(bottomMessage, pixelWidth /2 - g.getFontMetrics().stringWidth(bottomMessage)/2, pixelHeight /2 + offset - 10);
+        //----------------- Paint Text -----------------------------//
 
 
     }
@@ -174,4 +192,8 @@ public class Gui extends JPanel {
     public void labelMessage(int text) {
         this.text = text;
     }
+//    @Override
+//    public int getHeight() {
+//        return super.getHeight()-20;
+//    }
 }

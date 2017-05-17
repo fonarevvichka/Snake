@@ -10,6 +10,7 @@ public class SnakeRunner extends JPanel {
     static Snake python;
     static Gameboard board;
     static Gui gui;
+    static int boardWidth, boardHeight;
 
     public static void main(String Args[]) {
         board = new Gameboard(38, 38);
@@ -23,9 +24,12 @@ public class SnakeRunner extends JPanel {
                 while (running) {
                     gui.start = false;
                     while (python.isAlive()) {
-                        board.setWidth(gui.getWidth()/15);
-                        board.setHeight((gui.getHeight()-22)/15);
-                        if (!gui.pause) {
+                        boardWidth = gui.getWidth()/15;
+                        boardHeight = (gui.getHeight()/15);
+
+                        board.setWidth(boardWidth);
+                        board.setHeight(boardHeight);
+                        if  (!gui.pause) {
                             gui.labelMessage(2); // NO TEXT
                             python.dir = gui.getDir(); // GET NEW DIR
                             python.changeDir(python.dir); // UPDATE SNAKE DIR
