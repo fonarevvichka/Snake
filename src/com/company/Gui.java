@@ -20,9 +20,6 @@ public class Gui extends JPanel {
     public char speed = 'M';
     private JFrame frame;
     private int text;
-//    private Vector<Icon> snake;
-//    private Icon snakeCell;
-//    private Icon food;
 
     public Gui() {
         this.pixelWidth = 15 * (SnakeRunner.board.getWidth());
@@ -163,6 +160,10 @@ public class Gui extends JPanel {
                 offset = 10;
                 topMessage = "You lost with a score of: " + SnakeRunner.python.getLength();
                 bottomMessage = "Press space to try again";
+                break;
+            case 4:
+                offset = 0;
+                topMessage = "You won, please go outside now";
                 break;
         }
         //----------------- Set Text ------------------------//

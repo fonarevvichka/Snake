@@ -8,12 +8,13 @@ import java.util.Vector;
  */
 public class Snake {
     public char dir;
+    private boolean done = false;
     private Cell head;
     private int speed;
+    private final int growRate = 3;
     private Vector<Cell> snakeVector;
     private Gameboard board;
     Food food = null;
-
 
     public static void main(String[] Args) {
 //        Snake python = new Snake('R');
@@ -48,12 +49,16 @@ public class Snake {
 
         int foodX = rand.nextInt(board.getWidth());
         int foodY = rand.nextInt(board.getHeight());
-        for (int i = 0; i < snakeVector.size(); i++) {
-            if (foodX == snakeVector.get(i).getX() || foodY == snakeVector.get(i).getY()) {
-                foodX = rand.nextInt(board.getWidth());
-                foodY = rand.nextInt(board.getHeight());
-            } else {
-                break;
+
+        while(!done) {
+            for (int i = 0; i < snakeVector.size(); i++) {
+                if (foodX == snakeVector.get(i).getX() || foodY == snakeVector.get(i).getY()) {
+                    foodX = rand.nextInt(board.getWidth());
+                    foodY = rand.nextInt(board.getHeight());
+                } else {
+                    done = true;
+                    break;
+                }
             }
         }
         return new Food(foodX, foodY);
@@ -66,12 +71,13 @@ public class Snake {
         if(isHeadAtFood()) {
             eat();
         }
-
+        //------------ Speed of Snake -------------//
         try {
             Thread.sleep(speed);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
+        //------------ Speed of Snake -------------//
     }
     public void updateDir() {
         for(int i = snakeVector.size()-1; i > 0; i--) {
@@ -84,8 +90,7 @@ public class Snake {
         this.dir = dir;
     }
     public void eat() {
-
-        for(int i = 0; i < 2; i++) {
+        for(int i = 0; i < growRate; i++) {
             char dir = snakeVector.get(snakeVector.size() - 1).getDir();
             int lastX = snakeVector.get(snakeVector.size() - 1).getX();
             int lastY = snakeVector.get(snakeVector.size() - 1).getY();
