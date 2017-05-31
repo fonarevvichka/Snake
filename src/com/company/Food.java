@@ -12,7 +12,6 @@ public class Food {
         this.xCord = xCord;
         this.yCord = yCord;
     }
-
     public int getXCord() {
         return xCord;
     }

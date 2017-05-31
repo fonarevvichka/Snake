@@ -6,17 +6,19 @@ import javax.swing.*;
  * Created by lhscompsci on 4/3/17.
  */
 
-public class SnakeRunner extends JPanel {
-    static Snake python;
+public class DoubleSnakeRunner extends JPanel {
+    static Snake python, blackMamba;
     static Gameboard board;
-    static Gui gui;
+    static Food food = null;
+    static DoubleGui gui;
     private static boolean won = false;
     static int boardWidth, boardHeight;
 
     public static void main(String Args[]) {
         board = new Gameboard(38, 38);
-        python = new Snake('S', board, 'M');
-        gui = new Gui();
+        python = new Snake('D', board, 'M');
+        blackMamba = new Snake('U', board, 'M', 37, 37);
+        gui = new DoubleGui();
         Thread snakeRunner = new Thread(new Runnable() {
             private boolean running = true;
 
@@ -25,9 +27,9 @@ public class SnakeRunner extends JPanel {
                 while (running) {
                     gui.start = false;
 
-                    while (python.isAlive()) {
+                    while (python.isAlive() && blackMamba.isAlive()) {
                         boardWidth = gui.getWidth() / 15;
-                        boardHeight = (gui.getHeight() / 15);
+                        boardHeight = gui.getHeight() / 15;
 
                         board.setWidth(boardWidth);
                         board.setHeight(boardHeight);
@@ -37,14 +39,30 @@ public class SnakeRunner extends JPanel {
                             won = true;
                             break;
                         }
-
+//FOOD ISNT WORKING FOR SECOND SNAKE BEACUSE IT IS MAKING ITS WON AND ITS NOT DISPLAYING
                         if (!gui.pause) {
                             gui.labelMessage(2); // NO TEXT
-                            python.dir = gui.getDir(); // GET NEW DIR
+
+                            python.dir = gui.getLeftDir(); // GET NEW DIR
+                            blackMamba.dir = gui.getRightDir();
+
                             python.changeDir(python.dir); // UPDATE SNAKE DIR
+                            blackMamba.changeDir(blackMamba.dir);
+
                             python.updateSnake(); // UPDATE SNAKE
+
+                            blackMamba.setFood(python.getFood());
+                            blackMamba.updateSnake();
+
+                            if (python.eaten) {
+                                blackMamba.setFood(python.getFood());
+                            } else if (blackMamba.eaten) {
+                                python.setFood(blackMamba.getFood());
+                            }
+
+
                             gui.repaint(); // REDRAW GUI
-                            if (!python.isAlive()) {
+                            if (!python.isAlive() && blackMamba.isAlive()) {
                                 gui.start = false;
                             }
                         } else {
@@ -67,7 +85,8 @@ public class SnakeRunner extends JPanel {
                             }
                         }
                         gui.resetKeyboardActions(); // RESET KEYBOARD INPUT
-                        python = new Snake('S', board, 'M'); // NEW SNAKE;
+                        python = new Snake('D', board, 'M'); // NEW SNAKE;
+                        blackMamba = new Snake('U', board, 'M', boardWidth, boardHeight);
                         gui.labelMessage(0); // PRESS PLAY TO START MESSAGE
 
                         gui.repaint(); // DRAW NEW SNAKE
@@ -82,6 +101,7 @@ public class SnakeRunner extends JPanel {
                             }
                         }
                         python.setSpeed(gui.speed);
+                        blackMamba.setSpeed(gui.speed);
                         gui.labelMessage(2); // NO TEXT
                     }
                     else { // GAME WON
@@ -97,7 +117,8 @@ public class SnakeRunner extends JPanel {
                         }
                         gui.labelMessage(0); // PRESS PLAY TO START MESSAGE
                         gui.resetKeyboardActions(); // RESET KEYBOARD INPUT
-                        python = new Snake('S', board, 'M'); // NEW SNAKE;
+                        python = new Snake('D', board, 'M'); // NEW SNAKE
+                        blackMamba = new Snake('U', board, 'M', boardWidth, boardHeight);
 
                         gui.repaint(); // DRAW NEW SNAKE
 

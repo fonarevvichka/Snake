@@ -8,6 +8,7 @@ import java.util.Vector;
  */
 public class Snake {
     public char dir;
+    public boolean eaten = false;
     private boolean done = false;
     private Cell head;
     private int speed;
@@ -44,6 +45,26 @@ public class Snake {
         snakeVector.add(head);
         food = generateFood();
     }
+    public Snake(char dir, Gameboard board, char speed, int startX, int startY) {
+        this.dir = dir;
+        switch(speed) {
+            case 'S':
+                this.speed = 100;
+                break;
+            case 'M':
+                this.speed = 75;
+                break;
+            case 'F':
+                this.speed = 50;
+                break;
+        }
+        this.speed = speed;
+        this.board = board;
+        head = new Cell(startX, startY, dir);
+        snakeVector = new Vector<Cell>();
+        snakeVector.add(head);
+        food = generateFood();
+    }
     public Food generateFood() {
         Random rand = new Random();
 
@@ -70,6 +91,9 @@ public class Snake {
         }
         if(isHeadAtFood()) {
             eat();
+            eaten = true;
+        } else {
+            eaten = false;
         }
         //------------ Speed of Snake -------------//
         try {
@@ -192,5 +216,11 @@ public class Snake {
                 this.speed = 50;
                 break;
         }
+    }
+    public void setFood(Food food) {
+        this.food = food;
+    }
+    public Food getFood() {
+        return this.food;
     }
 }

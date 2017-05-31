@@ -4,26 +4,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.Graphics;
+import java.awt.geom.Path2D;
 
 /**
  * Created by lhscompsci on 4/12/17.
  */
-public class Gui extends JPanel {
+public class DoubleGui extends JPanel {
     private int pixelWidth, pixelHeight;
     private int cleanWidth, cleanHeight;
     private int key;
     private String topMessage, bottomMessage, scoreMessage;
     int offset;
-    private char dir = SnakeRunner.python.dir;
+    private char leftDir;
+    private char rightDir;
     public boolean start = false, pause = false;
     public char speed = 'M';
     private JFrame frame;
     private int text;
 
-    public Gui() {
-        this.pixelWidth = 15 * (SnakeRunner.board.getWidth());
-        this.pixelHeight = 15 * (SnakeRunner.board.getHeight()) + 22; //22 --> account for toolbar, 20 --> score bar
+    public DoubleGui() {
+        this.pixelWidth = 15 * (DoubleSnakeRunner.board.getWidth());
+        this.pixelHeight = 15 * (DoubleSnakeRunner.board.getHeight()) + 22; //22 --> account for toolbar, 20 --> score bar
 
         // ----------- Panel Setup ---------//
         this.setSize(pixelWidth, pixelHeight);
@@ -41,30 +42,47 @@ public class Gui extends JPanel {
             @Override
             public void keyPressed(KeyEvent e) {
                 key = e.getKeyCode();
-                dir = SnakeRunner.python.dir;
+                leftDir = DoubleSnakeRunner.python.dir;
+                rightDir = DoubleSnakeRunner.blackMamba.dir;
                 switch(key) {
-                    case KeyEvent.VK_A:
                     case KeyEvent.VK_LEFT:
-                        if(dir != 'R') {
-                            dir = 'L';
+                        if(rightDir != 'R') {
+                            rightDir = 'L';
+                        }
+                        break;
+                    case KeyEvent.VK_A:
+                        if(leftDir != 'R') {
+                            leftDir = 'L';
                         }
                         break;
                     case KeyEvent.VK_D:
+                        if(leftDir != 'L') {
+                            leftDir = 'R';
+                        }
+                        break;
                     case KeyEvent.VK_RIGHT:
-                        if(dir != 'L') {
-                            dir = 'R';
+                        if(rightDir != 'L') {
+                            rightDir = 'R';
                         }
                         break;
                     case KeyEvent.VK_S:
+                        if(leftDir != 'U') {
+                            leftDir = 'D';
+                        }
+                        break;
                     case KeyEvent.VK_DOWN:
-                        if(dir != 'U') {
-                            dir = 'D';
+                        if(rightDir != 'U') {
+                            rightDir = 'D';
                         }
                         break;
                     case KeyEvent.VK_W:
+                        if(leftDir != 'D') {
+                            leftDir = 'U';
+                        }
+                        break;
                     case KeyEvent.VK_UP:
-                        if(dir != 'D') {
-                            dir = 'U';
+                        if(rightDir != 'D') {
+                            rightDir = 'U';
                         }
                         break;
                     case KeyEvent.VK_SPACE:
@@ -124,20 +142,28 @@ public class Gui extends JPanel {
 //        g.fillRect(0, pixelHeight - 30, pixelWidth, 30);
 
         g.setColor(Color.WHITE);
-        scoreMessage = "Score: " + SnakeRunner.python.getLength();
+        scoreMessage = "Score: " + DoubleSnakeRunner.python.getLength();
         g.drawString(scoreMessage, cleanWidth - g.getFontMetrics().stringWidth(scoreMessage) - 10, cleanHeight - 10);
         //----------------- Score Bar -----------------//
 
-        //----------------- Snake ---------------------//
+        //----------------- Snake 1--------------------//
         g.setColor(Color.yellow);
-        for (Cell cell : SnakeRunner.python.getSnakeVector()) {
+        for (Cell cell : DoubleSnakeRunner.python.getSnakeVector()) {
             g.fillRect(cell.getX() * 15, cell.getY() * 15,13, 13);
         }
-        //----------------- Snake ---------------------//
+        //----------------- Snake 1--------------------//
+
+        //----------------- Snake 2 -------------------//
+        g.setColor(Color.blue);
+        for (Cell cell : DoubleSnakeRunner.blackMamba.getSnakeVector()) {
+            g.fillRect(cell.getX() * 15, cell.getY() * 15,13, 13);
+        }
+        //----------------- Snake 2 -------------------//
+
 
         //----------------- Food ---------------------//
         g.setColor(Color.red);
-        g.fillRect(SnakeRunner.python.food.getXCord() * 15, SnakeRunner.python.food.getYCord() * 15, 13, 13);
+        g.fillRect(DoubleSnakeRunner.python.food.getXCord() * 15, DoubleSnakeRunner.python.food.getYCord() * 15, 13, 13);
         //----------------- Food ---------------------//
 
         //----------------- Set Text -----------------//
@@ -161,7 +187,7 @@ public class Gui extends JPanel {
                 break;
             case 3:
                 offset = 10;
-                topMessage = "You lost with a score of: " + SnakeRunner.python.getLength();
+                topMessage = "You lost with a score of: " + DoubleSnakeRunner.python.getLength();
                 bottomMessage = "Press space to try again";
                 break;
             case 4:
@@ -189,8 +215,11 @@ public class Gui extends JPanel {
 
 
     }
-    public char getDir() {
-        return dir;
+    public char getLeftDir() {
+        return leftDir;
+    }
+    public char getRightDir() {
+        return rightDir;
     }
     public void labelMessage(int text) {
         this.text = text;
