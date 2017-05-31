@@ -16,7 +16,7 @@ public class Gui extends JPanel {
     private String topMessage, bottomMessage, scoreMessage;
     int offset;
     private char dir = SnakeRunner.python.dir;
-    public boolean start = false, pause = true;
+    public boolean start = false, pause = false;
     public char speed = 'M';
     private JFrame frame;
     private int text;
@@ -74,14 +74,17 @@ public class Gui extends JPanel {
                         break;
                     case KeyEvent.VK_1:
                         speed = 'S';
+                        pause = false;
                         start = true;
                         break;
                     case KeyEvent.VK_2:
                         speed = 'M';
+                        pause = false;
                         start = true;
                         break;
                     case KeyEvent.VK_3:
                         speed = 'F';
+                        pause = false;
                         start = true;
                         break;
                 }

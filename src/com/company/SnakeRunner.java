@@ -26,16 +26,18 @@ public class SnakeRunner extends JPanel {
                     gui.start = false;
 
                     while (python.isAlive()) {
-                        if (boardWidth * boardHeight < python.getLength()) {
-                            gui.labelMessage(4);
-                            won = true;
-                            break;
-                        }
                         boardWidth = gui.getWidth() / 15;
                         boardHeight = (gui.getHeight() / 15);
 
                         board.setWidth(boardWidth);
                         board.setHeight(boardHeight);
+
+                        if (boardWidth * boardHeight < python.getLength()) {
+                            gui.labelMessage(4);
+                            won = true;
+                            break;
+                        }
+
                         if (!gui.pause) {
                             gui.labelMessage(2); // NO TEXT
                             python.dir = gui.getDir(); // GET NEW DIR
@@ -46,6 +48,7 @@ public class SnakeRunner extends JPanel {
                                 gui.start = false;
                             }
                         } else {
+                            System.out.println("asdfadsf");
                             gui.labelMessage(1); // PAUSE MESSAGE
                             try {
                                 Thread.sleep(10);
