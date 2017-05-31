@@ -48,7 +48,6 @@ public class SnakeRunner extends JPanel {
                                 gui.start = false;
                             }
                         } else {
-                            System.out.println("asdfadsf");
                             gui.labelMessage(1); // PAUSE MESSAGE
                             try {
                                 Thread.sleep(10);
