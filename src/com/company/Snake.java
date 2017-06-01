@@ -49,13 +49,13 @@ public class Snake {
         this.dir = dir;
         switch(speed) {
             case 'S':
-                this.speed = 100;
+                this.speed = 50;
                 break;
             case 'M':
-                this.speed = 75;
+                this.speed = 37;
                 break;
             case 'F':
-                this.speed = 50;
+                this.speed = 25;
                 break;
         }
         this.speed = speed;

@@ -9,7 +9,7 @@ import javax.swing.*;
 public class DoubleSnakeRunner extends JPanel {
     static Snake python, blackMamba;
     static Gameboard board;
-    static Food food = null;
+//    static Food food = null; //MOVE FOOD TO RUNNER AND OUT OF SNAKE? would have to be accesible from snake somehow
     static DoubleGui gui;
     private static boolean won = false;
     static int boardWidth, boardHeight;
@@ -19,6 +19,7 @@ public class DoubleSnakeRunner extends JPanel {
         python = new Snake('D', board, 'M');
         blackMamba = new Snake('U', board, 'M', 37, 37);
         gui = new DoubleGui();
+        blackMamba = new Snake('U', board, 'M', (gui.getWidth()/15)-1, (gui.getHeight()/15)-1);
         Thread snakeRunner = new Thread(new Runnable() {
             private boolean running = true;
 
@@ -26,7 +27,6 @@ public class DoubleSnakeRunner extends JPanel {
             public void run() {
                 while (running) {
                     gui.start = false;
-
                     while (python.isAlive() && blackMamba.isAlive()) {
                         boardWidth = gui.getWidth() / 15;
                         boardHeight = gui.getHeight() / 15;
@@ -39,7 +39,6 @@ public class DoubleSnakeRunner extends JPanel {
                             won = true;
                             break;
                         }
-//FOOD ISNT WORKING FOR SECOND SNAKE BEACUSE IT IS MAKING ITS WON AND ITS NOT DISPLAYING
                         if (!gui.pause) {
                             gui.labelMessage(2); // NO TEXT
 
@@ -75,7 +74,13 @@ public class DoubleSnakeRunner extends JPanel {
                         }
                     }
                     if (!won) {
-                        gui.labelMessage(3); //SCORE MESSAGE
+                        if (python.getLength() > blackMamba.getLength()) { // P1 WINS
+                            gui.labelMessage(3);
+                        } else if(python.getLength() == blackMamba.getLength()) { // TIE
+                            gui.labelMessage(4);
+                        } else { // P2 WINS
+                            gui.labelMessage(5);
+                        }
 
                         while (!gui.start) { // WAIT FOR RESTART
                             try {
@@ -86,7 +91,7 @@ public class DoubleSnakeRunner extends JPanel {
                         }
                         gui.resetKeyboardActions(); // RESET KEYBOARD INPUT
                         python = new Snake('D', board, 'M'); // NEW SNAKE;
-                        blackMamba = new Snake('U', board, 'M', boardWidth, boardHeight);
+                        blackMamba = new Snake('U', board, 'M', boardWidth-1, boardHeight-1);
                         gui.labelMessage(0); // PRESS PLAY TO START MESSAGE
 
                         gui.repaint(); // DRAW NEW SNAKE
@@ -118,7 +123,7 @@ public class DoubleSnakeRunner extends JPanel {
                         gui.labelMessage(0); // PRESS PLAY TO START MESSAGE
                         gui.resetKeyboardActions(); // RESET KEYBOARD INPUT
                         python = new Snake('D', board, 'M'); // NEW SNAKE
-                        blackMamba = new Snake('U', board, 'M', boardWidth, boardHeight);
+                        blackMamba = new Snake('U', board, 'M', boardWidth-1, boardHeight-1);
 
                         gui.repaint(); // DRAW NEW SNAKE
 

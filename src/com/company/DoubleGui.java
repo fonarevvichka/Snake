@@ -127,24 +127,30 @@ public class DoubleGui extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
         pixelWidth = getWidth();
         pixelHeight = getHeight();
+
         cleanWidth = (pixelWidth /15)*15;
         cleanHeight = (pixelHeight /15)*15;
+
         //----------------- Paint Board ---------------//
         g.setColor(Color.darkGray);
         g.fillRect(0,0, cleanWidth, cleanHeight); //gets rid of overflow pixels
         //----------------- Paint Board ---------------//
 
 
-        //----------------- Score Bar -----------------//
-//        g.setColor(new Color(45, 45, 45));
-//        g.fillRect(0, pixelHeight - 30, pixelWidth, 30);
-
+        //----------------- Score Bar P2 -----------------//
         g.setColor(Color.WHITE);
-        scoreMessage = "Score: " + DoubleSnakeRunner.python.getLength();
+        scoreMessage = "Player 2: " + DoubleSnakeRunner.blackMamba.getLength();
+        g.drawString(scoreMessage, 10, cleanHeight - 10);
+        //----------------- Score Bar P2 -----------------//
+
+        //----------------- Score Bar P1 -----------------//
+        g.setColor(Color.WHITE);
+        scoreMessage = "Player 1: " + DoubleSnakeRunner.python.getLength();
         g.drawString(scoreMessage, cleanWidth - g.getFontMetrics().stringWidth(scoreMessage) - 10, cleanHeight - 10);
-        //----------------- Score Bar -----------------//
+        //----------------- Score Bar P1 -----------------//
 
         //----------------- Snake 1--------------------//
         g.setColor(Color.yellow);
@@ -159,7 +165,6 @@ public class DoubleGui extends JPanel {
             g.fillRect(cell.getX() * 15, cell.getY() * 15,13, 13);
         }
         //----------------- Snake 2 -------------------//
-
 
         //----------------- Food ---------------------//
         g.setColor(Color.red);
@@ -178,7 +183,6 @@ public class DoubleGui extends JPanel {
                 topMessage = "Paused, press 'Space to resume";
                 bottomMessage = "";
                 offset = 0;
-
                 break;
             case 2:
                 topMessage = "";
@@ -187,13 +191,18 @@ public class DoubleGui extends JPanel {
                 break;
             case 3:
                 offset = 10;
-                topMessage = "You lost with a score of: " + DoubleSnakeRunner.python.getLength();
+                topMessage = "Player 1 wins with a score of " + DoubleSnakeRunner.python.getLength();
                 bottomMessage = "Press space to try again";
                 break;
             case 4:
-                offset = 0;
-                topMessage = "You won, please go outside now";
+                offset = 10;
+                topMessage = "Player 1 and Player 2 tied with a score of " + DoubleSnakeRunner.python.getLength();
+                bottomMessage = "Press space to try again";
                 break;
+            case 5:
+                offset = 10;
+                topMessage = "Player 2 wins with a score of " + DoubleSnakeRunner.python.getLength();
+                bottomMessage = "Press space to try again";
         }
         //----------------- Set Text ------------------------//
 
@@ -201,7 +210,7 @@ public class DoubleGui extends JPanel {
         if(text != 2) {
             g.setColor(new Color(45,45,45,200));
             g.fillRect(pixelWidth /2 - (g.getFontMetrics().stringWidth(topMessage))/2 - 5, pixelHeight /2 - offset - 25, g.getFontMetrics().stringWidth(topMessage) + 10, 20);
-            if(text == 3) {
+            if(text > 2) {
                 g.fillRect(pixelWidth / 2 - g.getFontMetrics().stringWidth(topMessage) / 2 - 5, pixelHeight / 2 + offset - 25, g.getFontMetrics().stringWidth(topMessage) + 10, 20);
             }
         }

@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82d195dc-b966-4084-9f22-d16de3f537b4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/company/Gui.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/company/SnakeRunner.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Food.java" afterPath="$PROJECT_DIR$/src/com/company/Food.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/DoubleGui.java" afterPath="$PROJECT_DIR$/src/com/company/DoubleGui.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/DoubleSnakeRunner.java" afterPath="$PROJECT_DIR$/src/com/company/DoubleSnakeRunner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Snake.java" afterPath="$PROJECT_DIR$/src/com/company/Snake.java" />
     </list>
     <ignored path="Snake.iws" />
@@ -33,12 +32,11 @@
       <file leaf-file-name="Snake.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Snake.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+            <state relative-caret-position="285">
+              <caret line="19" column="44" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Snake#0;class#Snake#0" expanded="false" />
-                <element signature="method#Snake#1;class#Snake#0" expanded="false" />
                 <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
                 <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
                 <element signature="method#eat#0;class#Snake#0" expanded="false" />
@@ -68,27 +66,32 @@
             <state relative-caret-position="210">
               <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
+                <element signature="e#262#263#0" expanded="true" />
+                <element signature="e#290#291#0" expanded="true" />
                 <element signature="method#toString#0;class#Food#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DoubleGui.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DoubleGui.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/DoubleGui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="189" column="78" selection-start-line="189" selection-start-column="78" selection-end-line="189" selection-end-column="78" />
-              <folding />
+            <state relative-caret-position="203">
+              <caret line="144" column="34" selection-start-line="144" selection-start-column="34" selection-end-line="144" selection-end-column="34" />
+              <folding>
+                <element signature="e#8906#8907#0" expanded="true" />
+                <element signature="e#8938#8939#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DoubleSnakeRunner.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DoubleSnakeRunner.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/DoubleSnakeRunner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="59" column="67" selection-start-line="59" selection-start-column="67" selection-end-line="59" selection-end-column="67" />
+            <state relative-caret-position="-516">
+              <caret line="80" column="42" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -131,11 +134,11 @@
         <option value="$PROJECT_DIR$/src/com/company/snakeRunner.java" />
         <option value="$PROJECT_DIR$/src/com/company/SnakeGui.java" />
         <option value="$PROJECT_DIR$/src/com/company/SnakeRunner.java" />
-        <option value="$PROJECT_DIR$/src/com/company/DoubleGui.java" />
         <option value="$PROJECT_DIR$/src/com/company/Gui.java" />
         <option value="$PROJECT_DIR$/src/com/company/Food.java" />
         <option value="$PROJECT_DIR$/src/com/company/Snake.java" />
         <option value="$PROJECT_DIR$/src/com/company/DoubleSnakeRunner.java" />
+        <option value="$PROJECT_DIR$/src/com/company/DoubleGui.java" />
       </list>
     </option>
   </component>
@@ -147,7 +150,6 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
     <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="1053" />
@@ -177,7 +179,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -216,8 +217,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -552,7 +554,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="23" width="1920" height="1053" extended-state="6" />
+    <frame x="0" y="23" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -562,13 +564,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39227644" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39227644" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -580,6 +581,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -611,7 +613,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Snake#0;class#Snake#0" expanded="false" />
-            <element signature="method#Snake#1;class#Snake#0" expanded="false" />
             <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
@@ -631,7 +632,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Snake#0;class#Snake#0" expanded="false" />
-            <element signature="method#Snake#1;class#Snake#0" expanded="false" />
             <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
@@ -673,7 +673,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Snake#0;class#Snake#0" expanded="false" />
-            <element signature="method#Snake#1;class#Snake#0" expanded="false" />
             <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
@@ -715,7 +714,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Snake#0;class#Snake#0" expanded="false" />
-            <element signature="method#Snake#1;class#Snake#0" expanded="false" />
             <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
@@ -757,7 +755,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Snake#0;class#Snake#0" expanded="false" />
-            <element signature="method#Snake#1;class#Snake#0" expanded="false" />
             <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
@@ -798,7 +795,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Snake#0;class#Snake#0" expanded="false" />
-            <element signature="method#Snake#1;class#Snake#0" expanded="false" />
             <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
@@ -840,7 +836,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Snake#0;class#Snake#0" expanded="false" />
-            <element signature="method#Snake#1;class#Snake#0" expanded="false" />
             <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
@@ -882,7 +877,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Snake#0;class#Snake#0" expanded="false" />
-            <element signature="method#Snake#1;class#Snake#0" expanded="false" />
             <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
@@ -931,14 +925,8 @@
     <entry file="file://$PROJECT_DIR$/src/com/company/SnakeGui.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/src.zip!/java/awt/Graphics.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/src.zip!/java/awt/Color.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/company/Gameboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/SnakeRunner.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/company/Gui.java" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -947,18 +935,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/SnakeRunner.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Gameboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Gui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
+        <state relative-caret-position="120">
+          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -968,27 +948,20 @@
         <state relative-caret-position="210">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
+            <element signature="e#262#263#0" expanded="true" />
+            <element signature="e#290#291#0" expanded="true" />
             <element signature="method#toString#0;class#Food#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/DoubleGui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="189" column="78" selection-start-line="189" selection-start-column="78" selection-end-line="189" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Snake.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+        <state relative-caret-position="285">
+          <caret line="19" column="44" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Snake#0;class#Snake#0" expanded="false" />
-            <element signature="method#Snake#1;class#Snake#0" expanded="false" />
             <element signature="method#generateFood#0;class#Snake#0" expanded="false" />
             <element signature="method#updateDir#0;class#Snake#0" expanded="false" />
             <element signature="method#eat#0;class#Snake#0" expanded="false" />
@@ -1003,9 +976,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/DoubleSnakeRunner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="59" column="67" selection-start-line="59" selection-start-column="67" selection-end-line="59" selection-end-column="67" />
+        <state relative-caret-position="-516">
+          <caret line="80" column="42" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/DoubleGui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="144" column="34" selection-start-line="144" selection-start-column="34" selection-end-line="144" selection-end-column="34" />
+          <folding>
+            <element signature="e#8906#8907#0" expanded="true" />
+            <element signature="e#8938#8939#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
