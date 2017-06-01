@@ -34,7 +34,7 @@ public class DoubleGui extends JPanel {
         this.setBackground(new Color(45, 45, 45));
         // ----------- Panel Setup ---------//
 
-        //-------- Key Listener --------//
+        //-------- Key Listener 1 --------//
         this.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {}
@@ -110,13 +110,13 @@ public class DoubleGui extends JPanel {
             @Override
             public void keyReleased(KeyEvent e) {}
         });
-        //-------- Key Listener --------//
+        //-------- Key Listener 1 --------//
 
         // ----------- Frame Setup ---------//
         frame = new JFrame();
         frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Snake");
+        frame.setTitle("DoubleSnake");
         frame.getContentPane().add(this);
         frame.pack();
         frame.setSize(pixelWidth, pixelHeight);
@@ -152,19 +152,19 @@ public class DoubleGui extends JPanel {
         g.drawString(scoreMessage, cleanWidth - g.getFontMetrics().stringWidth(scoreMessage) - 10, cleanHeight - 10);
         //----------------- Score Bar P1 -----------------//
 
-        //----------------- Snake 1--------------------//
+        //----------------- DoubleSnake 1--------------------//
         g.setColor(Color.yellow);
         for (Cell cell : DoubleSnakeRunner.python.getSnakeVector()) {
             g.fillRect(cell.getX() * 15, cell.getY() * 15,13, 13);
         }
-        //----------------- Snake 1--------------------//
+        //----------------- DoubleSnake 1--------------------//
 
-        //----------------- Snake 2 -------------------//
+        //----------------- DoubleSnake 2 -------------------//
         g.setColor(Color.blue);
         for (Cell cell : DoubleSnakeRunner.blackMamba.getSnakeVector()) {
             g.fillRect(cell.getX() * 15, cell.getY() * 15,13, 13);
         }
-        //----------------- Snake 2 -------------------//
+        //----------------- DoubleSnake 2 -------------------//
 
         //----------------- Food ---------------------//
         g.setColor(Color.red);

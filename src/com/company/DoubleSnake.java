@@ -6,7 +6,7 @@ import java.util.Vector;
 /**
  * Created by lhscompsci on 3/22/17.
  */
-public class Snake {
+public class DoubleSnake {
     public char dir;
     public boolean eaten = false;
     private boolean done = false;
@@ -18,14 +18,14 @@ public class Snake {
     Food food = null;
 
     public static void main(String[] Args) {
-//        Snake python = new Snake('R');
+//        DoubleSnake python = new DoubleSnake('R');
 //        python.updateSnake();
 //        python.changeDir('D');
 //        while(python.isAlive()) {
 //            python.updateSnake();
 //        }
     }
-    public Snake(char dir, Gameboard board, char speed) {
+    public DoubleSnake(char dir, Gameboard board, char speed) {
         this.dir = dir;
         switch(speed) {
             case 'S':
@@ -45,17 +45,17 @@ public class Snake {
         snakeVector.add(head);
         food = generateFood();
     }
-    public Snake(char dir, Gameboard board, char speed, int startX, int startY) {
+    public DoubleSnake(char dir, Gameboard board, char speed, int startX, int startY) {
         this.dir = dir;
         switch(speed) {
             case 'S':
-                this.speed = 50;
+                this.speed = 100;
                 break;
             case 'M':
-                this.speed = 37;
+                this.speed = 75;
                 break;
             case 'F':
-                this.speed = 25;
+                this.speed = 50;
                 break;
         }
         this.speed = speed;
@@ -95,13 +95,13 @@ public class Snake {
         } else {
             eaten = false;
         }
-        //------------ Speed of Snake -------------//
+        //------------ Speed of DoubleSnake -------------//
         try {
             Thread.sleep(speed);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-        //------------ Speed of Snake -------------//
+        //------------ Speed of DoubleSnake -------------//
     }
     public void updateDir() {
         for(int i = snakeVector.size()-1; i > 0; i--) {
