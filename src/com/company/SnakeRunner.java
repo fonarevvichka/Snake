@@ -1,6 +1,8 @@
 package com.company;
 
 import javax.swing.*;
+import java.io.*;
+import java.util.Scanner;
 
 /**
  * Created by lhscompsci on 4/3/17.
@@ -12,6 +14,8 @@ public class SnakeRunner extends JPanel {
     static Gui gui;
     private static boolean won = false;
     static int boardWidth, boardHeight;
+    public static String[] topPlayers = new String[5];
+    public static int[] topScores = new int[5];
 
     public static void main(String Args[]) {
         board = new Gameboard(38, 38);
@@ -23,17 +27,12 @@ public class SnakeRunner extends JPanel {
             @Override
             public void run() {
                 while (running) {
+                    updateBoardDimensions();
                     gui.start = false;
 
                     while (python.isAlive()) {
-                        boardWidth = gui.getWidth() / 15;
-                        boardHeight = (gui.getHeight() / 15);
-
-                        board.setWidth(boardWidth);
-                        board.setHeight(boardHeight);
-
-                        if (boardWidth * boardHeight < python.getLength()) {
-                            gui.labelMessage(4);
+                        if (boardWidth * boardHeight < python.getLength()) { // CHECK IF THE GAME IS WON
+                            gui.labelMessage(4); // WON MESSAGE
                             won = true;
                             break;
                         }
@@ -49,22 +48,15 @@ public class SnakeRunner extends JPanel {
                             }
                         } else {
                             gui.labelMessage(1); // PAUSE MESSAGE
-                            try {
-                                Thread.sleep(10);
-                            } catch (InterruptedException ex) {
-                                ex.printStackTrace();
-                            }
+                            sleep();
                         }
                     }
                     if (!won) {
+                        inputTopScores();
                         gui.labelMessage(3); //SCORE MESSAGE
-
+                        gui.labelMessage(5);
                         while (!gui.start) { // WAIT FOR RESTART
-                            try {
-                                Thread.sleep(10);
-                            } catch (InterruptedException ex) {
-                                ex.printStackTrace();
-                            }
+                            sleep();
                         }
                         gui.resetKeyboardActions(); // RESET KEYBOARD INPUT
                         python = new Snake('S', board, 'M'); // NEW SNAKE;
@@ -75,11 +67,7 @@ public class SnakeRunner extends JPanel {
                         gui.start = false;
 
                         while (!gui.start) { // WAIT FOR START
-                            try {
-                                Thread.sleep(10);
-                            } catch (InterruptedException ex) {
-                                ex.printStackTrace();
-                            }
+                            sleep();
                         }
                         python.setSpeed(gui.speed);
                         gui.labelMessage(2); // NO TEXT
@@ -89,11 +77,7 @@ public class SnakeRunner extends JPanel {
 
                         gui.start = false;
                         while (!gui.start) { // WAIT FOR RESTART
-                            try {
-                                Thread.sleep(10);
-                            } catch (InterruptedException ex) {
-                                ex.printStackTrace();
-                            }
+                            sleep();
                         }
                         gui.labelMessage(0); // PRESS PLAY TO START MESSAGE
                         gui.resetKeyboardActions(); // RESET KEYBOARD INPUT
@@ -104,11 +88,7 @@ public class SnakeRunner extends JPanel {
                         gui.start = false;
 
                         while (!gui.start) { // WAIT FOR START
-                            try {
-                                Thread.sleep(10);
-                            } catch (InterruptedException ex) {
-                                ex.printStackTrace();
-                            }
+                            sleep();
                         }
                         python.setSpeed(gui.speed);
                         gui.labelMessage(2); // NO TEXT
@@ -122,14 +102,59 @@ public class SnakeRunner extends JPanel {
         }, "snakeRunner");
         gui.labelMessage(0);
         while (!gui.start) {
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
+            sleep();
         }
         python.setSpeed(gui.speed);
         gui.labelMessage(2);
         snakeRunner.start();
     }
+
+    public static void sleep() {
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void updateBoardDimensions() {
+        boardWidth = gui.getWidth() / 15;
+        boardHeight = (gui.getHeight() / 15);
+
+        board.setWidth(boardWidth);
+        board.setHeight(boardHeight);
+    }
+
+    public static void inputTopScores() {
+        Scanner reader = null;
+        String tempName = "";
+        int count = 0;
+        try {
+            File file = new File("topScores.txt");
+            reader = new Scanner(file);
+        } catch (Exception e) {
+            System.out.println ("Wrong file name");
+        }
+        while (reader.hasNextLine()) {
+            topScores[count] = reader.nextInt();
+            topPlayers[count] = reader.next();
+            count ++;
+        }
+    }
+
+    public static void setTopScores() {
+        PrintWriter writer = null;
+        String tempName = "";
+        try {
+            File file = new File("topScores.txt");
+            writer = new PrintWriter(file);
+        } catch (Exception e) {
+            System.out.println ("Wrong file name");
+        }
+        for (int i = 0; i < topScores.length; i ++) {
+            writer.println(topScores[i] + " " + topPlayers[i]);
+        }
+    }
+
+
 }

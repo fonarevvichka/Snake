@@ -168,6 +168,16 @@ public class Gui extends JPanel {
                 offset = 0;
                 topMessage = "You won, please go outside now";
                 break;
+            case 5:
+                int topScoreIndex = 6;
+                for (int i = 0; i < 5; i++) {
+                    if (SnakeRunner.python.getLength() > SnakeRunner.topScores[i]) {
+                        topScoreIndex = i;
+                    }
+                }
+                if (topScoreIndex < 6) {
+                    topMessage = "Great job! you beat " + SnakeRunner.topPlayers[topScoreIndex] + ". Now go outside";
+                }
         }
         //----------------- Set Text ------------------------//
 
