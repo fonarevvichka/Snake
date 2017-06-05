@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.Graphics;
+import java.util.Scanner;
 
 /**
  * Created by lhscompsci on 4/12/17.
@@ -13,7 +14,7 @@ public class Gui extends JPanel {
     private int pixelWidth, pixelHeight;
     private int cleanWidth, cleanHeight;
     private int key;
-    private String topMessage, bottomMessage, scoreMessage;
+    public String topMessage, bottomMessage, scoreMessage;
     int offset;
     private char dir = SnakeRunner.python.dir;
     public boolean start = false, pause = false;
@@ -169,15 +170,9 @@ public class Gui extends JPanel {
                 topMessage = "You won, please go outside now";
                 break;
             case 5:
-                int topScoreIndex = 6;
-                for (int i = 0; i < 5; i++) {
-                    if (SnakeRunner.python.getLength() > SnakeRunner.topScores[i]) {
-                        topScoreIndex = i;
-                    }
-                }
-                if (topScoreIndex < 6) {
-                    topMessage = "Great job! you beat " + SnakeRunner.topPlayers[topScoreIndex] + ". Now go outside";
-                }
+                topMessage = "Great job! you beat " + SnakeRunner.topPlayers[topScoreIndex] + ". Input your name:";
+
+
         }
         //----------------- Set Text ------------------------//
 

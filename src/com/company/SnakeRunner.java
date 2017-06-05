@@ -14,8 +14,8 @@ public class SnakeRunner extends JPanel {
     static Gui gui;
     private static boolean won = false;
     static int boardWidth, boardHeight;
-    public static String[] topPlayers = new String[5];
-    public static int[] topScores = new int[5];
+    public static String[] topPlayers = {"john", "john", "john", "john", "john"};
+    public static int[] topScores = {0,0,0,0,0};
 
     public static void main(String Args[]) {
         board = new Gameboard(38, 38);
@@ -51,10 +51,29 @@ public class SnakeRunner extends JPanel {
                             sleep();
                         }
                     }
+                    inputTopScores();
+                    int topScoreIndex = 6;
+                    Scanner input = new Scanner(System.in);
+                    String name;
+                    for (int i = 0; i < 5; i++) {
+                        if (SnakeRunner.python.getLength() > SnakeRunner.topScores[i]) {
+                            topScoreIndex = i;
+                        }
+                    }
+                    if (topScoreIndex < 6) {
+                        name = input.next();
+                        SnakeRunner.topPlayers[topScoreIndex] = name;
+                        SnakeRunner.topScores[topScoreIndex] = SnakeRunner.python.getLength();
+                    }
+
+
+
+                    for (int i = 0; i < topScores.length; i ++) {
+                        System.out.println(topScores[i] + " " + topPlayers[i]);
+                    }
+                    gui.labelMessage(5);
                     if (!won) {
-                        inputTopScores();
                         gui.labelMessage(3); //SCORE MESSAGE
-                        gui.labelMessage(5);
                         while (!gui.start) { // WAIT FOR RESTART
                             sleep();
                         }
@@ -98,6 +117,7 @@ public class SnakeRunner extends JPanel {
                 //display lost message + score + hit space to try again and to reset snake /field
                 //more gui stuff
 //                }
+
             }
         }, "snakeRunner");
         gui.labelMessage(0);
@@ -107,6 +127,7 @@ public class SnakeRunner extends JPanel {
         python.setSpeed(gui.speed);
         gui.labelMessage(2);
         snakeRunner.start();
+
     }
 
     public static void sleep() {
@@ -135,7 +156,7 @@ public class SnakeRunner extends JPanel {
         } catch (Exception e) {
             System.out.println ("Wrong file name");
         }
-        while (reader.hasNextLine()) {
+        while (reader.hasNext()) {
             topScores[count] = reader.nextInt();
             topPlayers[count] = reader.next();
             count ++;
