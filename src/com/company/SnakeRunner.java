@@ -51,27 +51,43 @@ public class SnakeRunner extends JPanel {
                             sleep();
                         }
                     }
-                    inputTopScores();
+
+                    //------------ HIGH SCORE CALCULATION -------------//
+                    readTopScores(); // populates arrays
                     int topScoreIndex = 6;
-                    Scanner input = new Scanner(System.in);
-                    String name;
+                    Scanner cin = new Scanner(System.in);
+                    String name = "";
                     for (int i = 0; i < 5; i++) {
                         if (SnakeRunner.python.getLength() > SnakeRunner.topScores[i]) {
                             topScoreIndex = i;
+                            gui.setScoreBeat(topScoreIndex);
+                            break;
                         }
                     }
                     if (topScoreIndex < 6) {
-                        name = input.next();
+                        gui.labelMessage(5);
+                        gui.repaint();
+
+                        System.out.print("Enter Name:");
+                        name = cin.next();
+                        System.out.println("Thank you");
+                        int tempScore = python.getLength();
+                        String tempName = name;
+                        gui.repaint();
+
+                        for(int i = 4; i > topScoreIndex; i--) {
+                            topPlayers[i] = topPlayers[i-1];
+                            topScores[i] = topScores[i-1];
+
+                        }
                         SnakeRunner.topPlayers[topScoreIndex] = name;
                         SnakeRunner.topScores[topScoreIndex] = SnakeRunner.python.getLength();
                     }
+                    writeScoresToFile();
+                    //------------ HIGH SCORE CALCULATION -------------//
 
 
 
-                    for (int i = 0; i < topScores.length; i ++) {
-                        System.out.println(topScores[i] + " " + topPlayers[i]);
-                    }
-                    gui.labelMessage(5);
                     if (!won) {
                         gui.labelMessage(3); //SCORE MESSAGE
                         while (!gui.start) { // WAIT FOR RESTART
@@ -146,7 +162,7 @@ public class SnakeRunner extends JPanel {
         board.setHeight(boardHeight);
     }
 
-    public static void inputTopScores() {
+    public static void readTopScores() {
         Scanner reader = null;
         String tempName = "";
         int count = 0;
@@ -161,9 +177,10 @@ public class SnakeRunner extends JPanel {
             topPlayers[count] = reader.next();
             count ++;
         }
+        reader.close();
     }
 
-    public static void setTopScores() {
+    public static void writeScoresToFile() {
         PrintWriter writer = null;
         String tempName = "";
         try {
@@ -175,6 +192,8 @@ public class SnakeRunner extends JPanel {
         for (int i = 0; i < topScores.length; i ++) {
             writer.println(topScores[i] + " " + topPlayers[i]);
         }
+        writer.close();
+        writer.flush();
     }
 
 

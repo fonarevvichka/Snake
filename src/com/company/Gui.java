@@ -13,11 +13,14 @@ import java.util.Scanner;
 public class Gui extends JPanel {
     private int pixelWidth, pixelHeight;
     private int cleanWidth, cleanHeight;
-    private int key;
+    private int key, offset;
+    private int scoreBeat;
     public String topMessage, bottomMessage, scoreMessage;
-    int offset;
+    public static String[] topPlayers = {"john", "john", "john", "john", "john"};
+    public static int[] topScores = {0,0,0,0,0};
+
     private char dir = SnakeRunner.python.dir;
-    public boolean start = false, pause = false;
+    public boolean start = false, pause = false, displayScores = false;
     public char speed = 'M';
     private JFrame frame;
     private int text;
@@ -112,18 +115,15 @@ public class Gui extends JPanel {
         super.paintComponent(g);
         pixelWidth = getWidth();
         pixelHeight = getHeight();
-        cleanWidth = (pixelWidth /15)*15;
-        cleanHeight = (pixelHeight /15)*15;
+        cleanWidth = (pixelWidth /15) * 15;
+        cleanHeight = (pixelHeight /15) * 15;
+
         //----------------- Paint Board ---------------//
         g.setColor(Color.darkGray);
         g.fillRect(0,0, cleanWidth, cleanHeight); //gets rid of overflow pixels
         //----------------- Paint Board ---------------//
 
-
         //----------------- Score Bar -----------------//
-//        g.setColor(new Color(45, 45, 45));
-//        g.fillRect(0, pixelHeight - 30, pixelWidth, 30);
-
         g.setColor(Color.WHITE);
         scoreMessage = "Score: " + SnakeRunner.python.getLength();
         g.drawString(scoreMessage, cleanWidth - g.getFontMetrics().stringWidth(scoreMessage) - 10, cleanHeight - 10);
@@ -148,30 +148,38 @@ public class Gui extends JPanel {
                 topMessage = "Press '1', '2', or '3' for speed and to begin, move around with the arrow keys, or WASD";
                 bottomMessage = "";
                 offset = 0;
+                displayScores = true;
+
                 break;
             case 1:
                 topMessage = "Paused, press 'Space to resume";
                 bottomMessage = "";
                 offset = 0;
-
+                displayScores = false;
                 break;
             case 2:
                 topMessage = "";
                 bottomMessage = "";
                 offset = 0;
+                displayScores = false;
                 break;
             case 3:
                 offset = 10;
                 topMessage = "You lost with a score of: " + SnakeRunner.python.getLength();
                 bottomMessage = "Press space to try again";
+                displayScores = true;
                 break;
             case 4:
                 offset = 0;
                 topMessage = "You won, please go outside now";
+                displayScores = true;
                 break;
             case 5:
-                topMessage = "Great job! you beat " + SnakeRunner.topPlayers[topScoreIndex] + ". Input your name:";
-
+                topMessage = "You lost with a score of: " + SnakeRunner.python.getLength();
+                bottomMessage = "You beat " + SnakeRunner.topPlayers[scoreBeat] + ". Input your name in the console";
+                offset = 10;
+                displayScores = true;
+                break;
 
         }
         //----------------- Set Text ------------------------//
@@ -180,8 +188,8 @@ public class Gui extends JPanel {
         if(text != 2) {
             g.setColor(new Color(45,45,45,200));
             g.fillRect(pixelWidth /2 - (g.getFontMetrics().stringWidth(topMessage))/2 - 5, pixelHeight /2 - offset - 25, g.getFontMetrics().stringWidth(topMessage) + 10, 20);
-            if(text == 3) {
-                g.fillRect(pixelWidth / 2 - g.getFontMetrics().stringWidth(topMessage) / 2 - 5, pixelHeight / 2 + offset - 25, g.getFontMetrics().stringWidth(topMessage) + 10, 20);
+            if(text > 2) {
+                g.fillRect(pixelWidth / 2 - g.getFontMetrics().stringWidth(bottomMessage) / 2 - 5, pixelHeight / 2 + offset - 25, g.getFontMetrics().stringWidth(bottomMessage) + 10, 20);
             }
         }
         //----------------- Message background ---------------------//
@@ -192,13 +200,31 @@ public class Gui extends JPanel {
         g.drawString(bottomMessage, pixelWidth /2 - g.getFontMetrics().stringWidth(bottomMessage)/2, pixelHeight /2 + offset - 10);
         //----------------- Paint Text -----------------------------//
 
+        if(displayScores) {
+            g.setColor(new Color(45,45,45,200));
+            g.fillRect(pixelWidth /2 - (g.getFontMetrics().stringWidth(topMessage))/2 - 5, pixelHeight /2 - 5 + offset, g.getFontMetrics().stringWidth(topMessage) + 10, 115);
 
+            g.setColor(Color.white);
+            SnakeRunner.readTopScores();
+            this.topScores = SnakeRunner.topScores;
+            this.topPlayers = SnakeRunner.topPlayers;
+
+            offset = -110;
+            for (int i = 4; i >= 0; i--) {
+                topMessage = (i + 1) + ". " + topScores[i] + " " + topPlayers[i];
+                g.drawString(topMessage, pixelWidth / 2 - (g.getFontMetrics().stringWidth(topMessage)) / 2, pixelHeight / 2 - offset - 10);
+                offset += 20;
+            }
+        }
     }
     public char getDir() {
         return dir;
     }
     public void labelMessage(int text) {
         this.text = text;
+    }
+    public void setScoreBeat(int scoreBeat) {
+        this.scoreBeat = scoreBeat;
     }
 //    @Override
 //    public int getHeight() {
