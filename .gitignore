@@ -13,3 +13,11 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 out/
+.idea/
+.metadata/.mylyn/contexts/
+.metadata/.plugins/org.eclipse.cdt.managedbuilder.core/
+.metadata/.plugins/org.eclipse.debug.core/
+.metadata/.plugins/org.eclipse.emf.common.ui/
+.metadata/.plugins/org.eclipse.mylyn.bugzilla.core/
+.metadata/.plugins/org.eclipse.mylyn.context.core/
+.metadata/.plugins/org.eclipse.mylyn.tasks.ui/
