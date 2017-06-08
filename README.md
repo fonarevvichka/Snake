@@ -2,7 +2,7 @@
 ---------------------
 
 ## Prerequisites
-* Intelli-J - [Download Here](https://www.jetbrains.com/idea/)
+* Java IDE (Intelli-J Recomended - [Download Here](https://www.jetbrains.com/idea/)
 
 ## Set Up
 1. Clone or download the project - [Download here](https://github.com/fonarevvichka/Snake/archive/master.zip)
