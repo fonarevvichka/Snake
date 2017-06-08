@@ -82,6 +82,9 @@ public class SnakeRunner extends JPanel {
                         }
                         SnakeRunner.topPlayers[topScoreIndex] = name;
                         SnakeRunner.topScores[topScoreIndex] = SnakeRunner.python.getLength();
+                    } else {
+                        gui.labelMessage(3);
+                        gui.repaint();
                     }
                     writeScoresToFile();
                     //------------ HIGH SCORE CALCULATION -------------//

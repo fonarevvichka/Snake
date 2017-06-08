@@ -15,7 +15,7 @@ public class Gui extends JPanel {
     private int cleanWidth, cleanHeight;
     private int key, offset;
     private int scoreBeat;
-    public String topMessage, bottomMessage, scoreMessage;
+    public String topMessage = "", bottomMessage = "", scoreMessage = "", highScoreMessage = "", longestString = "";
     public static String[] topPlayers = {"john", "john", "john", "john", "john"};
     public static int[] topScores = {0,0,0,0,0};
 
@@ -97,6 +97,20 @@ public class Gui extends JPanel {
             public void keyReleased(KeyEvent e) {}
         });
         //-------- Key Listener --------//
+
+        //-------- User Input ----------//
+
+
+//
+//        Scanner scn = new Scanner(System.in);
+//        String input = scn.nextLine();
+//
+//        JTextField txtInput = new JTextField("");
+//
+//        input = txtInput.getText();
+//        System.out.println(input);
+
+
 
         // ----------- Frame Setup ---------//
         frame = new JFrame();
@@ -186,6 +200,15 @@ public class Gui extends JPanel {
 
         //----------------- Message background ---------------------//
         if(text != 2) {
+//            if(bottomMessage.length() > topMessage.length()) {
+//                if(bottomMessage.length() > highScoreMessage.length()) {
+//                    longestString = bottomMessage;
+//                } else {
+//                    longestString = highScoreMessage;
+//                }
+//            } else if (topMessage.length() > highScoreMessage.length()) {
+//                longestString = topMessage;
+//            }
             g.setColor(new Color(45,45,45,200));
             g.fillRect(pixelWidth /2 - (g.getFontMetrics().stringWidth(topMessage))/2 - 5, pixelHeight /2 - offset - 25, g.getFontMetrics().stringWidth(topMessage) + 10, 20);
             if(text > 2) {
@@ -211,8 +234,8 @@ public class Gui extends JPanel {
 
             offset = -110;
             for (int i = 4; i >= 0; i--) {
-                topMessage = (i + 1) + ". " + topScores[i] + " " + topPlayers[i];
-                g.drawString(topMessage, pixelWidth / 2 - (g.getFontMetrics().stringWidth(topMessage)) / 2, pixelHeight / 2 - offset - 10);
+                highScoreMessage = (i + 1) + ". " + topScores[i] + " " + topPlayers[i];
+                g.drawString(highScoreMessage, pixelWidth / 2 - (g.getFontMetrics().stringWidth(highScoreMessage)) / 2, pixelHeight / 2 - offset - 10);
                 offset += 20;
             }
         }
@@ -226,8 +249,4 @@ public class Gui extends JPanel {
     public void setScoreBeat(int scoreBeat) {
         this.scoreBeat = scoreBeat;
     }
-//    @Override
-//    public int getHeight() {
-//        return super.getHeight()-20;
-//    }
 }
